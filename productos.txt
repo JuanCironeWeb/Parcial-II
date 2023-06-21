@@ -1,6 +1,0 @@
-item1 
-nombre:"Combo Full Kit Indoor Led Carpa 80x80 + Led 300w Completo",
-imagen:"productos/items1.jpg",
-precio: 137.500,
-descripcion: "La carpa de cultivo INDOOR BELLAVITA 80 x 80 x 160 cm. Lite
-Permite la germinación, crecimiento y cosecha de tus plantas. Controla con eficacia los parametros de tu cultivo temperatura, humedad, iluminacion y ventilacion."
