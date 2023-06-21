@@ -15,7 +15,7 @@ let mostrarInfo = document.getElementById('#catalogo').value;
 
 
  for(let x of productos){ 
-mostrarInfo += "<div class="card"> <ul>"
+mostrarInfo += "<div class='card'> <ul>";
     for(let y in x){ 
         if(y == 0){ 
             mostrarInfo += `<li> ${x[y]}</li>`
