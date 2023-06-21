@@ -11,11 +11,11 @@
     productos[5]=["Led Full Spectrum 50w Reflector Cultivo Indoor Tbcin", "productos/item6.jpg","Proyector a Led Full Espectro. Potencia: 50W. Luz: Full Espectro", 
     41.000,"luces" ];
 
-let mostrarInfo = document.getElementById('#catalogo').value; 
+let mostrarInfo = ''; 
 
 
  for(let x of productos){ 
-mostrarInfo += "<div class='card'> <ul>";
+    mostrarInfo += "<div> <ul>";
     for(let y in x){ 
         if(y == 0){ 
             mostrarInfo += `<li> ${x[y]}</li>`
@@ -25,5 +25,8 @@ mostrarInfo += "<div class='card'> <ul>";
             mostrarInfo += `<li> $${x[y]}</li>`
         }
     }
-    mostrarInfo += " </ul> x</div>"
- }
+    mostrarInfo += " </ul> </div>"
+    document.getElementById("catalogo").innerHTML = mostrarInfo;
+
+}
+
