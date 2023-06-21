@@ -20,7 +20,7 @@ let mostrarInfo = '';
         if(y == 0){ 
             mostrarInfo += `<li> ${x[y]}</li>`
         }else if(y == 1){ 
-            mostrarInfo += `<li> <img src="${x[y]}" alt = ${x[0]}> </li>`
+            mostrarInfo += `<li> <img src ="${x[y]}" alt = ${x[0]}> </li>`
         }else if(y==3){ 
             mostrarInfo += `<li> $${x[y]}</li>`
         }
