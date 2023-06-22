@@ -15,7 +15,7 @@ let mostrarInfo = '';
 
 
  for(let x of productos){ 
-    mostrarInfo += "<div> <ul>";
+    mostrarInfo += "<div class= 'card'> <ul>";
     for(let y in x){ 
         if(y == 0){ 
             mostrarInfo += `<li> ${x[y]}</li>`

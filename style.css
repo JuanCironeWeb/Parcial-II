@@ -30,4 +30,19 @@ nav ul li{
     width: 30px;
     height: 30px;
 }
-
+.card{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction:column ;
+}
+.card img{
+    width: 100px;
+    height: 100px;
+}
+.catalogo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
