@@ -30,3 +30,39 @@ let mostrarInfo = '';
 
 }
 
+let main = document.querySelector('main') ; 
+console.log(main);
+let ventanaModal = document.createElement('div');
+main.append(ventanaModal);
+ventanaModal.setAttribute('class', 'VentanaModal')
+let carrito = document.getElementById("Carrito") ; 
+ventanaModal.style.display = 'none';  
+
+let VentanaModalX = document.createElement('div'); 
+
+
+carrito.addEventListener('mouseover', (parametro) => { 
+    ventanaModal.style.display = 'flex'; 
+    ventanaModal.style.flexDirection = 'column'; 
+    ventanaModal.style.width = '200px'; 
+    ventanaModal.style.height = '350px'; 
+    ventanaModal.style.backgroundColor = 'grey'; 
+    ventanaModal.style.alignItems = 'flex-end';
+    ventanaModal.style.position = 'absolute' ; 
+    ventanaModal.style.top = '60px'
+    ventanaModal.style.right = '40px'
+    ventanaModal.prepend(VentanaModalX); 
+    VentanaModalX.style.width = '7%'; 
+    VentanaModalX.style.height = '7%'; 
+    VentanaModalX.style.background = 'url(cerrar.png) no-repeat center';
+    VentanaModalX.style.backgroundSize = 'cover'; 
+    VentanaModalX.style.marginRight = '5px';
+})
+
+VentanaModalX.addEventListener('click', (parametro) => { 
+    ventanaModal.style.display = 'none';
+})
+
+
+
+
