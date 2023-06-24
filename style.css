@@ -120,6 +120,7 @@ footer ul li{
     width: 300px;
     height: auto;
     background-color: rgb(182, 182, 182);
+    margin-right: 10px;
 
 }
 .ProductoCarrito ul{
@@ -145,3 +146,5 @@ footer ul li{
 .ProductoCarrito .itemPrice{
     order: 3;
 }
+
+
