@@ -93,9 +93,55 @@ main{
     height: 29px;
     margin:auto;
 }
+
 footer{
     background: #000;
     color: #dddddd;
     margin-top: 2rem;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    text-align: center;
+    
+}
+footer ul{
+    font-size: 1rem; 
+    font-weight: 700;
+}
+footer ul li{
+    font-size: 0.8rem;
+    font-weight: 300;
 }
 
+.ProductoCarrito{
+    width: 300px;
+    height: auto;
+    background-color: rgb(182, 182, 182);
+
+}
+.ProductoCarrito ul{
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+
+
+}
+.ProductoCarrito ul li img{
+    width:100px;
+}
+.ProductoCarrito .agregar{
+    display: none;
+}
+
+.ProductoCarrito .itemImg{
+    order: 1;
+}
+.ProductoCarrito .itemTitle{
+    order:2;
+}
+.ProductoCarrito .itemPrice{
+    order: 3;
+}
