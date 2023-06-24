@@ -6,11 +6,12 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 ul{ 
     list-style: none;
 }
 h1{
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 header{ 
     background-color: #f19d57;
@@ -33,7 +34,7 @@ nav ul li{
     text-indent: -9999px;
 }
 #Carrito{ 
-    background: url(Recursos/carrito.svg) no-repeat;
+    background: url(Recursos/carrito-de-compras.png) no-repeat;
     background-size: cover;
     width: 1.5rem;
     height: 1.5rem;
@@ -41,7 +42,7 @@ nav ul li{
 }
 .card{
     width: 160px;
-    height: 250px;
+    height: 280px;
     display: flex;
     flex-direction:column ;
     justify-content: space-between;
@@ -57,30 +58,36 @@ nav ul li{
     border-radius: 5%;
 }
 main{ 
-    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 #catalogo{
-    width: 90%;
+    max-width: 600px;
+    min-width: 330px;
+    margin: auto;
     display: flex;
+    justify-self: center;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 2rem;
+    gap: 15px;
 }
 
 .itemTitle{
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     font-weight: 500;
     margin: 0.2rem;
+    height: rem;
 }
 .itemPrice{
     font-size: 1rem;
+    font-weight: 600;
 }
 .agregar{
     text-indent: -9999px;
-    background: url(Recursos/agregar.svg) no-repeat;
+    background: url(Recursos/plus.svg) no-repeat;
     background-size: cover;
     width: 28px;
     height: 29px;
