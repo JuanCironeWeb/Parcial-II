@@ -18,17 +18,22 @@ for(let x of productos){
    mostrarInfo += "<div class= 'card'> <ul>";
    for(let y in x){ 
        if(y == 0){ 
-           mostrarInfo += `<li class='itemTitle'> ${x[y]}</li>`
+           mostrarInfo += `<li class='itemTitle'> ${x[y]} </li>`
        }else if(y == 1){ 
            mostrarInfo += `<li class='itemImg'> <img src ="${x[y]}" alt = ${x[0]}> </li>`
        }else if(y==3){ 
-           mostrarInfo += `<li class='itemPrice'> $${x[y]}</li>`
+           mostrarInfo += `<li  class='itemPrice'> $${x[y]}</li>`
+       }else if(y==2){
+            mostrarInfo+= `<li class='descripcion' style='display:none;'> ${x[y]} </li>`;
        }
    }
-   mostrarInfo += "<li class='agregar'> Agregar</li>   </ul> </div>"
+   mostrarInfo +=`<li id='position' class='agregar'> ${position}</li>   </ul> </div>`;
+   console.log(position);
    document.getElementById("catalogo").innerHTML = mostrarInfo;
 
 }
+
+
 
 let main = document.querySelector('main') ; 
 console.log(main);
@@ -85,9 +90,7 @@ let ProductoCarrito = document.getElementsByClassName('ProductoCarrito');
 let PrecioProducto;
 let PrecioTotalAcum = 0;
 let TextoPrecioProducto;
-let PrecioProducto1
-
-
+let PrecioProducto1;
 
 for(let x of BotonCarrito){ 
    x.addEventListener('click', (parametro) => { 
@@ -103,7 +106,7 @@ for(let x of BotonCarrito){
        PrecioTotal.append(TextoPrecioProducto);
        ventanaModal.appendChild(ProductoAgregarClon);
 
-   })
+       })
 
 }
 
