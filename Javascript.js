@@ -39,6 +39,7 @@ let carrito = document.getElementById("Carrito") ;
 ventanaModal.style.display = 'none';  
 
 let VentanaModalX = document.createElement('div'); 
+let PrecioTotal = document.createElement('div') ; 
 
 
 carrito.addEventListener('mouseover', (parametro) => { 
@@ -52,11 +53,14 @@ carrito.addEventListener('mouseover', (parametro) => {
     ventanaModal.style.top = '60px'
     ventanaModal.style.right = '40px'
     ventanaModal.prepend(VentanaModalX); 
+    VentanaModalX.setAttribute('class', 'VentanaModalX')
     VentanaModalX.style.width = '7%'; 
     VentanaModalX.style.height = '7%'; 
     VentanaModalX.style.background = 'url(cerrar.png) no-repeat center';
     VentanaModalX.style.backgroundSize = 'cover'; 
     VentanaModalX.style.marginRight = '5px';
+    ventanaModal.append(PrecioTotal); 
+    PrecioTotal.style.width = '100%';
 })
 
 VentanaModalX.addEventListener('click', (parametro) => { 
@@ -69,6 +73,11 @@ let BotonCarrito = document.getElementsByClassName('agregar') ;
 console.log(BotonCarrito);
 
 let elegido, ProductoAgregar, ProductoAgregarClon;
+let ProductoCarrito = getElementsByClassName('ProductoCarrito'); 
+
+
+
+
 
 for(let x of BotonCarrito){ 
     x.addEventListener('click', (parametro) => { 
