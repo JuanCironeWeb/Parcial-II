@@ -115,6 +115,10 @@ footer ul li{
     font-size: 0.8rem;
     font-weight: 300;
 }
+footer ul li a{
+    text-decoration: none;
+    color: #dddddd;
+}
 
 .ProductoCarrito{
     width: 300px;
@@ -146,5 +150,7 @@ footer ul li{
 .ProductoCarrito .itemPrice{
     order: 3;
 }
-
+.VentanaModal{
+    overflow-y:auto;
+}
 
