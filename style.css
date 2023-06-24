@@ -65,14 +65,14 @@ main{
 #catalogo{
     max-width: 600px;
     min-width: 330px;
-    margin: auto;
+    margin: 1rem;
     display: flex;
     justify-self: center;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 2rem;
-    gap: 15px;
+    gap: 1rem;
 }
 
 .itemTitle{
@@ -92,5 +92,10 @@ main{
     width: 28px;
     height: 29px;
     margin:auto;
+}
+footer{
+    background: #000;
+    color: #dddddd;
+    margin-top: 2rem;
 }
 
