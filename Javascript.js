@@ -27,11 +27,11 @@ for(let x of productos){
             mostrarInfo+= `<li class='descripcion' style='display:none;'> ${x[y]} </li>`;
        }
    }
-   mostrarInfo +=`<li id='position' class='agregar'> ${position}</li>   </ul> </div>`;
-   console.log(position);
+   mostrarInfo +=`<li id='position' class='agregar'> ${x}</li>   </ul> </div>`;
    document.getElementById("catalogo").innerHTML = mostrarInfo;
 
 }
+
 
 
 
@@ -90,7 +90,7 @@ let ProductoCarrito = document.getElementsByClassName('ProductoCarrito');
 let PrecioProducto;
 let PrecioTotalAcum = 0;
 let TextoPrecioProducto;
-let PrecioProducto1;
+let PrecioProducto1
 
 for(let x of BotonCarrito){ 
    x.addEventListener('click', (parametro) => { 
