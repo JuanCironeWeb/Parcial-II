@@ -123,19 +123,21 @@ footer ul li a{
 .ProductoCarrito{
     width: 300px;
     height: auto;
-    background-color: rgb(182, 182, 182);
-    margin-right: 10px;
-
+    background-color:#f19d57;
+    justify-self: center;
 }
 .ProductoCarrito ul{
     width: 300px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
 
 }
 .ProductoCarrito ul li img{
-    width:100px;
+    width:80px;
+    height: 80px;
+    border-radius: 5%;
 }
 .ProductoCarrito .agregar{
     display: none;
@@ -150,7 +152,10 @@ footer ul li a{
 .ProductoCarrito .itemPrice{
     order: 3;
 }
+.VentanaModalX{
+    margin-bottom: 2%;
+}
 .VentanaModal{
-    overflow-y:auto;
+    overscroll-behavior:none;
 }
 
