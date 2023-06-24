@@ -120,6 +120,7 @@ footer ul li{
     width: 300px;
     height: auto;
     background-color: rgb(182, 182, 182);
+    margin-top: 7%;
 
 }
 .ProductoCarrito ul{
@@ -144,4 +145,8 @@ footer ul li{
 }
 .ProductoCarrito .itemPrice{
     order: 3;
+}
+
+.VentanaModal{
+
 }
