@@ -65,4 +65,20 @@ VentanaModalX.addEventListener('click', (parametro) => {
 
 
 
+let BotonCarrito = document.getElementsByClassName('agregar') ;
+console.log(BotonCarrito);
+
+let elegido, ProductoAgregar, ProductoAgregarClon;
+
+for(let x of BotonCarrito){ 
+    x.addEventListener('click', (parametro) => { 
+        elegido = parametro.target;
+        ProductoAgregar = elegido.parentNode.parentNode;
+        ProductoAgregarClon = ProductoAgregar.cloneNode(true);
+        ProductoAgregarClon.setAttribute('class', 'ProductoCarrito');
+        ventanaModal.appendChild(ProductoAgregarClon);
+        console.log(elegido);
+        console.log(ProductoAgregarClon);
+    })
+}
 
