@@ -125,6 +125,8 @@ footer ul li a{
     height: auto;
     background-color:#f19d57;
     justify-self: center;
+    margin: auto;
+    margin-right: 40px;
 }
 .ProductoCarrito ul{
     width: 300px;
@@ -153,9 +155,11 @@ footer ul li a{
     order: 3;
 }
 .VentanaModalX{
-    margin-bottom: 2%;
+    margin-bottom: 5px;
 }
 .VentanaModal{
     overscroll-behavior:none;
+    border-radius: 5%;
+    padding-top: 10px;
 }
 
