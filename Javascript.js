@@ -77,7 +77,10 @@ console.log(BotonCarrito);
 let elegido, ProductoAgregar, ProductoAgregarClon;
 let ProductoCarrito = document.getElementsByClassName('ProductoCarrito'); 
 
-
+let PrecioProducto;
+let PrecioTotalAcum = 0;
+let TextoPrecioProducto;
+let PrecioProducto1
 
 
 
@@ -87,9 +90,15 @@ for(let x of BotonCarrito){
         ProductoAgregar = elegido.parentNode.parentNode;
         ProductoAgregarClon = ProductoAgregar.cloneNode(true);
         ProductoAgregarClon.setAttribute('class', 'ProductoCarrito');
+        PrecioProducto = elegido.previousElementSibling.innerHTML;
+        PrecioProducto1 = PrecioProducto.slice(2);
+        PrecioProducto1 = Number.parseFloat(`${PrecioProducto1}`);
+        TextoPrecioProducto = document.createTextNode(`$${PrecioTotalAcum}`);
+        PrecioTotalAcum += PrecioProducto1;
+        PrecioTotal.append(TextoPrecioProducto);
         ventanaModal.appendChild(ProductoAgregarClon);
-        console.log(elegido);
-        console.log(ProductoAgregarClon);
+
     })
+
 }
 
