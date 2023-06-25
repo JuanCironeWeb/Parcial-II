@@ -51,6 +51,7 @@ nav ul li{
     background-color: #dddddd;
     border-radius: 5%;
     margin-top: 0.5rem;
+    box-shadow: #000 1px 1px 10px;
 }
 .card img{
     width: 80%;
@@ -159,9 +160,9 @@ footer ul li a{
 }
 .VentanaModal{
     overscroll-behavior:none;
-    border-radius: 5%;
+    border-radius: 15px;
     padding-top: 10px;
-    border: 3px rgb(158, 158, 158) solid;
+    border: 1px rgb(158, 158, 158) solid;
 }
 .PrecioTotal{
     font-size: 1rem;
@@ -171,6 +172,5 @@ footer ul li a{
     align-items: center;
     background: rgb(224, 222, 222);
     border-radius: 5%;
-    margin-bottom: 0px;
 }
 
