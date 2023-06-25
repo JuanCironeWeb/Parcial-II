@@ -161,5 +161,16 @@ footer ul li a{
     overscroll-behavior:none;
     border-radius: 5%;
     padding-top: 10px;
+    border: 3px rgb(158, 158, 158) solid;
+}
+.PrecioTotal{
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(224, 222, 222);
+    border-radius: 5%;
+    margin-bottom: 0px;
 }
 

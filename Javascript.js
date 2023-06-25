@@ -54,7 +54,6 @@ carrito.addEventListener('mouseover', (parametro) => {
    ventanaModal.style.minHeight= '100px';
    ventanaModal.style.height = 'auto'; 
    ventanaModal.style.backgroundColor = '#f19d57'; 
-   ventanaModal.style.alignItems = 'flex-end';
    ventanaModal.style.position = 'absolute' ; 
    ventanaModal.style.top = '60px'
    ventanaModal.style.right = '40px'
@@ -67,13 +66,12 @@ carrito.addEventListener('mouseover', (parametro) => {
    VentanaModalX.style.backgroundSize = 'cover'; 
    VentanaModalX.style.marginRight = '5px';
    VentanaModalX.style.position='absolute';
+   VentanaModalX.style.alignSelf='end';
    ventanaModal.append(PrecioTotal);
    PrecioTotal.setAttribute('class','PrecioTotal'); 
    PrecioTotal.style.width = '100%';
-   PrecioTotal.style.height = '20%';
+   PrecioTotal.style.height = '40px';
    PrecioTotal.style.order='3'
-   PrecioTotal.style.alignItems='end';
-   PrecioTotal.style.textAlign='center'
 })
 
 VentanaModalX.addEventListener('click', (parametro) => { 
@@ -102,7 +100,7 @@ for(let x of BotonCarrito){
        PrecioProducto = elegido.previousElementSibling.innerHTML;
        PrecioProducto1 = PrecioProducto.slice(2);
        PrecioProducto1 = Number.parseFloat(`${PrecioProducto1}`);
-       TextoPrecioProducto = document.createTextNode(`$${PrecioTotalAcum}`);
+       TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
        PrecioTotalAcum += PrecioProducto1;
        PrecioTotal.append(TextoPrecioProducto);
        ventanaModal.appendChild(ProductoAgregarClon);
