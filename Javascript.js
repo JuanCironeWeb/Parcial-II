@@ -44,7 +44,7 @@ let carrito = document.getElementById("Carrito") ;
 ventanaModal.style.display = 'none';  
 
 let VentanaModalX = document.createElement('div'); 
-let PrecioTotal = document.createElement('div') ; 
+var PrecioTotal = document.createElement('div') ; 
 
 
 carrito.addEventListener('mouseover', (parametro) => { 
@@ -86,12 +86,16 @@ console.log(BotonCarrito);
 let elegido, ProductoAgregar, ProductoAgregarClon;
 let ProductoCarrito = document.getElementsByClassName('ProductoCarrito'); 
 
-let PrecioProducto;
-let PrecioTotalAcum;
-let TextoPrecioProducto;
-let PrecioProducto1;
+var PrecioProducto;
+var PrecioTotalAcum = 0;
+var TextoPrecioProducto;
+var PrecioProducto1;
+
+// TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
+
 
 for(let x of BotonCarrito){ 
+
    x.addEventListener('click', (parametro) => { 
        elegido = parametro.target;
        ProductoAgregar = elegido.parentNode.parentNode;
@@ -102,11 +106,15 @@ for(let x of BotonCarrito){
        PrecioProducto1 = Number.parseFloat(`${PrecioProducto1}`);
        PrecioTotalAcum += PrecioProducto1;
        TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
-       PrecioTotal.append(TextoPrecioProducto);
        ventanaModal.appendChild(ProductoAgregarClon);
+       console.log(PrecioTotalAcum);
+       PrecioTotal.append(TextoPrecioProducto);
+
+  
        })
-        
+
 }
+
 
 let DivVentanaModalProd = document.createElement('div');
 
@@ -114,13 +122,27 @@ main.append(DivVentanaModalProd);
 
 DivVentanaModalProd.setAttribute('class', 'VentanaModalProd');
 DivVentanaModalProd.style.display = 'none'; 
-
+let descripcionProd;
+console.info(descripcionProd);
 let cards = document.getElementsByClassName('itemImg'); 
 let ventanaElegida;
+let CardAClonar;
+let CardClonada; 
 
 for(let x of cards){ 
-    x.addEventListener('mouseover', (parametro)=> { 
+    x.addEventListener('click', (parametro)=> { 
         ventanaElegida = parametro.target; 
-        DivVentanaModalProd.style
+        DivVentanaModalProd.style.display = 'flex'; 
+        DivVentanaModalProd.style.width = '20vw';
+        DivVentanaModalProd.style.height = '65vh'; 
+        DivVentanaModalProd.style.backgroundColor = 'grey';
+        descripcionProd = ventanaElegida.parentNode.nextElementSibling;
+        CardAClonar = ventanaElegida.parentNode.parentNode.parentNode;
+        console.info(CardAClonar);
+        CardClonada = CardAClonar.cloneNode(true); 
+        DivVentanaModalProd.prepend(CardClonada);
+        DivVentanaModalProd.append(descripcionProd);
+        console.info(descripcionProd);
+        console.info(ventanaElegida);
     })
 }
