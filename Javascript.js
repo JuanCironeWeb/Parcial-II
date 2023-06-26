@@ -87,9 +87,9 @@ let elegido, ProductoAgregar, ProductoAgregarClon;
 let ProductoCarrito = document.getElementsByClassName('ProductoCarrito'); 
 
 let PrecioProducto;
-let PrecioTotalAcum = 0;
+let PrecioTotalAcum;
 let TextoPrecioProducto;
-let PrecioProducto1
+let PrecioProducto1;
 
 for(let x of BotonCarrito){ 
    x.addEventListener('click', (parametro) => { 
@@ -100,12 +100,27 @@ for(let x of BotonCarrito){
        PrecioProducto = elegido.previousElementSibling.innerHTML;
        PrecioProducto1 = PrecioProducto.slice(2);
        PrecioProducto1 = Number.parseFloat(`${PrecioProducto1}`);
-       TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
        PrecioTotalAcum += PrecioProducto1;
+       TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
        PrecioTotal.append(TextoPrecioProducto);
        ventanaModal.appendChild(ProductoAgregarClon);
-
        })
-
+        
 }
 
+let DivVentanaModalProd = document.createElement('div');
+
+main.append(DivVentanaModalProd);
+
+DivVentanaModalProd.setAttribute('class', 'VentanaModalProd');
+DivVentanaModalProd.style.display = 'none'; 
+
+let cards = document.getElementsByClassName('itemImg'); 
+let ventanaElegida;
+
+for(let x of cards){ 
+    x.addEventListener('mouseover', (parametro)=> { 
+        ventanaElegida = parametro.target; 
+        DivVentanaModalProd.style
+    })
+}
