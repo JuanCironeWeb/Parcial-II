@@ -118,8 +118,9 @@ function mostrarProductos() {
 function agregarAlCarrito(indice){
     const productoSeleccionado = productos[indice];
     chango.push(productoSeleccionado);
-    totalCompra+=productoSeleccionado.precio;
+    totalCompra += productoSeleccionado.precio;
     actualizarCarrito();
+    chango = [];
 }
 
 function actualizarCarrito(){
