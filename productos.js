@@ -106,6 +106,7 @@ function mostrarProductos() {
     productoHTML.innerHTML=`<ul>
     <li class='itemTitle'> ${productos.titulo}</li>
     <li class='itemImg'><img src="${productos.img}" alt="${productos.titulo}"></li>
+    <li class='itemDesc'>${productos.descripcion}</li> 
     <li class='itemPrice' >$${productos.precio}</li>
     <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
     </ul>
@@ -139,3 +140,23 @@ function actualizarCarrito(){
 
 
 mostrarProductos();
+
+
+let cardProd = document.getElementsByClassName('card');
+let ProdElegido;
+console.info(cardProd);
+
+for(let x of cardProd){ 
+    x.addEventListener('mouseover',(parametro) => { 
+        ProdElegido = parametro.target;    
+        console.info(ProdElegido);
+        ProdElegido.style.backgroundColor = 'red';
+    })
+}
+
+for(let x of cardProd){ 
+    x.addEventListener('mouseout',(parametro) => { 
+        ProdElegido = parametro.target;    
+        ProdElegido.style.backgroundColor = '#dddddd';
+    })
+}
