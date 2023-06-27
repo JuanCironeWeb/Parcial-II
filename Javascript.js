@@ -36,7 +36,6 @@ for(let x of productos){
 
 
 let main = document.querySelector('main') ; 
-console.log(main);
 let ventanaModal = document.createElement('div');
 main.append(ventanaModal);
 ventanaModal.setAttribute('class', 'VentanaModal')
