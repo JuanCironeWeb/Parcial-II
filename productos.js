@@ -60,11 +60,29 @@ let carrito = document.getElementById("Carrito") ;
 ventanaModal.style.display = 'none';  
 
 let VentanaModalX = document.createElement('div'); 
-var PrecioTotal = document.createElement('div') ; 
+var PrecioTotal = document.createElement('div') ;
+let CreardivBotonVaciar = document.createElement('div')
+let CrearBotonVaciar = document.createElement('button'); 
+let TextoBotonVaciar = document.createTextNode('vaciar carrito');
+
+ventanaModal.appendChild(CreardivBotonVaciar); 
+CreardivBotonVaciar.appendChild(CrearBotonVaciar);
+CrearBotonVaciar.prepend(TextoBotonVaciar);
+CreardivBotonVaciar.setAttribute('id', 'DivBoton')
+CrearBotonVaciar.setAttribute('class', 'BotonVaciar');
+CrearBotonVaciar.setAttribute('onclick', 'VaciarCarrito()');
+
+let CrearCajaProds = document.createElement('div')
+    CrearCajaProds.setAttribute('id', 'CajaCarrito');
+    ventanaModal.appendChild(CrearCajaProds);
+let CajaCarrito = document.getElementById('CajaCarrito');
+
+
 ventanaModal.appendChild(PrecioTotal);
 PrecioTotal.setAttribute('id','total');
 PrecioTotal.setAttribute('class','PrecioTotal');
 PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+
 
 
 
@@ -94,6 +112,9 @@ VentanaModalX.addEventListener('click', (parametro) => {
     ventanaModal.style.display = 'none';
  })
 
+let BotonVaciar = document.getElementsByClassName('BotonVaciar'); 
+console.log(BotonVaciar);
+
 
 
 
@@ -120,11 +141,13 @@ function agregarAlCarrito(indice){
     chango.push(productoSeleccionado);
     totalCompra += productoSeleccionado.precio;
     actualizarCarrito();
-    chango = [];
+    console.log(chango);
+    chango = []; 
 }
 
+
+
 function actualizarCarrito(){
-    const carritoElement=document.getElementById('Carrito');
     chango.forEach((producto) => {
         const itemCarrito=document.createElement('div');
         itemCarrito.setAttribute('class','card');
@@ -132,18 +155,25 @@ function actualizarCarrito(){
         itemCarrito.innerHTML= `<ul>
         <li class='itemTitle'> ${producto.titulo}</li>
         <li class='itemImg'><img src="${producto.img}" alt="${producto.titulo}"></li>
-        <li class='itemPrice' >$${producto.precio}</li></ul>
-        `;
-        ventanaModal.appendChild(itemCarrito);
+        <li class='itemPrice' >$${producto.precio}</li></ul>`;
+        CajaCarrito.appendChild(itemCarrito);
     });
     PrecioTotal.innerHTML =`Total:$${totalCompra}`;
     }
 
+let itemCarrito = CajaCarrito.children;
+function VaciarCarrito(){ 
+        CajaCarrito.remove();
+    let CajaCarrito = document.createElement('div')
+    ventanaModal.appendChild(create);
+    CajaCarrito.setAttribute('id', 'CajaCarrito')
+}            
+        
+    
 
 mostrarProductos();
 
-
-let cardProd = document.getElementsByClassName('card');
+let cardProd = document.getElementById('productos').children;
 let ProdElegido;
 console.info(cardProd);
 
@@ -152,6 +182,7 @@ for(let x of cardProd){
         ProdElegido = parametro.target;    
         console.info(ProdElegido);
         ProdElegido.style.backgroundColor = 'red';
+        ProdElegido.style.transform = 'scale(1.07)';
     })
 }
 
@@ -159,5 +190,6 @@ for(let x of cardProd){
     x.addEventListener('mouseout',(parametro) => { 
         ProdElegido = parametro.target;    
         ProdElegido.style.backgroundColor = '#dddddd';
+        ProdElegido.style.transform = 'scale(1)';
     })
 }
