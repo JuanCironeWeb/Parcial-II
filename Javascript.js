@@ -1,37 +1,54 @@
 'use strict'
- 
-let productos = []; 
 
-   productos[0]=["Combo Full Kit Indoor Led Carpa 80x80 + Led 300w Completo","productos/item1.jpg","La carpa de cultivo INDOOR BELLAVITA 80 x 80 x 160 cm. Lite Permite la germinación, crecimiento y cosecha de tus plantas. Controla con eficacia los parámetros de tu cultivo temperatura, humedad, iluminación y ventilación.",137500, "kit"];
-   productos[1]=["Garden Highpro Carpa De Cultivo Ecopro 100x100x200", "productos/item2.jpg", "Tejido fuerte y resistente Nylon 420D Estructura patentada, fuerte y estable Mylar premium reflectividad 97%",79900,"Kit"];
-   productos[2]=["Maceta Mad Rocket 16 Litros Cultivo Indoor Gabba Grow Olivos", "productos/item3.jpg","Cuenta con guiadores de raíces y ventanas con auto poda radicular aérea. Esto hace que las raíces se estén reproduciendo continuamente y maximicen el espacio tanto en maceta como en tierra, haciendo que la planta cope todo el sustrato y no se pierda.",1900,"macetas"];
-   productos[3]=["Mad Rocket 25 Lts. Maceta Inteligente X 3 Unidades.","productos/item4.jpg","Posee 42 ventanas laterales que posibilitan la auto poda aérea, al tomar contacto con el oxigeno y la luz las raíces se atrofian y retoman su crecimiento por dentro de la maceta abarcando de manera completa todo el sustrato.",7950,"macetas"];
-   productos[4]=["Luz Panel Led Para Carpa Indoor Cultivo Full Spectrum 50w", "productos/item5.jpg", "Super simples de colocar, utilizan portalámparas común de rosca E27.Sin ruidos, sin parpadeos y con baja emisión de calor. Encendido instantáneo",
-   6184,"luces"];
-   productos[5]=["Led Full Spectrum 50w Reflector Cultivo Indoor Tbcin", "productos/item6.jpg","Proyector a Led Full Espectro. Potencia: 50W. Luz: Full Espectro", 
-   41000,"luces" ];
+const productos = [ 
+{
+    titulo:"Combo Full Kit Indoor Led Carpa 80x80 + Led 300w Completo",
+    img:"productos/item1.jpg",
+    precio:137500,
+    descripcion:"La carpa de cultivo INDOOR BELLAVITA 80 x 80 x 160 cm. Lite Permite la germinación, crecimiento y cosecha de tus plantas. Controla con eficacia los parámetros de tu cultivo temperatura, humedad, iluminación y ventilación.",
+    categoria:"kit"
+},
+{
+    titulo:"Garden Highpro Carpa De Cultivo Ecopro 100x100x200",
+    img:"productos/item2.jpg",
+    precio:79900,
+    descripcion:"Tejido fuerte y resistente Nylon 420D Estructura patentada, fuerte y estable Mylar premium reflectividad 97%",
+    categoria:"Kit"
+},
+{
+    titulo:"Maceta Mad Rocket 16 Litros Cultivo Indoor Gabba Grow Olivos",
+    img:"productos/item3.jpg",
+    precio:1900,
+    descripcion:"Cuenta con guiadores de raíces y ventanas con auto poda radicular aérea. Esto hace que las raíces se estén reproduciendo continuamente y maximicen el espacio tanto en maceta como en tierra, haciendo que la planta cope todo el sustrato y no se pierda.",
+    categoria:"macetas"
+},
+{
+    titulo:"Mad Rocket 25 Lts. Maceta Inteligente X 3 Unidades.",
+    img:"productos/item4.jpg",
+    precio:7950,
+    descripcion:"Posee 42 ventanas laterales que posibilitan la auto poda aérea, al tomar contacto con el oxigeno y la luz las raíces se atrofian y retoman su crecimiento por dentro de la maceta abarcando de manera completa todo el sustrato.",
+    categoria:"macetas"
+},
+{
+    titulo:"Luz Panel Led Para Carpa Indoor Cultivo Full Spectrum 50w",
+    img:"productos/item5.jpg",
+    precio:6184,
+    descripcion:"Super simples de colocar, utilizan portalámparas común de rosca E27.Sin ruidos, sin parpadeos y con baja emisión de calor. Encendido instantáneo",
+    categoria:"luces"
+},
+{
+    titulo:"Led Full Spectrum 50w Reflector Cultivo Indoor Tbcin",
+    img:"productos/item6.jpg",
+    precio: 41000,
+    descripcion:"Proyector a Led Full Espectro. Potencia: 50W. Luz: Full Espectro",
+    categoria:"luces" 
+}];
 
-let mostrarInfo = ''; 
 
 
-for(let x of productos){ 
-   mostrarInfo += "<div class= 'card'> <ul>";
-   for(let y in x){ 
-       if(y == 0){ 
-           mostrarInfo += `<li class='itemTitle'> ${x[y]} </li>`
-       }else if(y == 1){ 
-           mostrarInfo += `<li class='itemImg'> <img src ="${x[y]}" alt = ${x[0]}> </li>`
-       }else if(y==3){ 
-           mostrarInfo += `<li  class='itemPrice'> $${x[y]}</li>`
-       }else if(y==2){
-            mostrarInfo+= `<li class='descripcion' style='display:none;'> ${x[y]} </li>`;
-       }
-   }
-   mostrarInfo +=`<li id='position' class='agregar'> ${x}</li>   </ul> </div>`;
-   document.getElementById("catalogo").innerHTML = mostrarInfo;
 
-}
-
+let chango = [];
+let totalCompra = 0;
 
 
 
@@ -42,8 +59,15 @@ ventanaModal.setAttribute('class', 'VentanaModal')
 let carrito = document.getElementById("Carrito") ; 
 ventanaModal.style.display = 'none';  
 
+
+let carritocontenedor=document.createElement('div')
 let VentanaModalX = document.createElement('div'); 
 var PrecioTotal = document.createElement('div') ; 
+ventanaModal.appendChild(PrecioTotal);
+PrecioTotal.setAttribute('id','total');
+PrecioTotal.setAttribute('class','PrecioTotal');
+PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+
 
 
 carrito.addEventListener('mouseover', (parametro) => { 
@@ -57,6 +81,8 @@ carrito.addEventListener('mouseover', (parametro) => {
    ventanaModal.style.top = '60px'
    ventanaModal.style.right = '40px'
    ventanaModal.style.overflowY = 'auto';
+   ventanaModal.prepend(carritocontenedor);
+   carritocontenedor.setAttribute('id','carritoContenedor');
    ventanaModal.prepend(VentanaModalX); 
    VentanaModalX.setAttribute('class', 'VentanaModalX')
    VentanaModalX.style.width = '25px'; 
@@ -66,82 +92,122 @@ carrito.addEventListener('mouseover', (parametro) => {
    VentanaModalX.style.marginRight = '5px';
    VentanaModalX.style.position='absolute';
    VentanaModalX.style.alignSelf='end';
-   ventanaModal.append(PrecioTotal);
-   PrecioTotal.setAttribute('class','PrecioTotal'); 
-   PrecioTotal.style.width = '100%';
-   PrecioTotal.style.height = '40px';
-   PrecioTotal.style.order='3'
+
 })
 
 VentanaModalX.addEventListener('click', (parametro) => { 
-   ventanaModal.style.display = 'none';
-})
+    ventanaModal.style.display = 'none';
+ })
 
 
 
-let BotonCarrito = document.getElementsByClassName('agregar') ;
-console.log(BotonCarrito);
 
-let elegido, ProductoAgregar, ProductoAgregarClon;
-let ProductoCarrito = document.getElementsByClassName('ProductoCarrito'); 
-
-var PrecioProducto;
-var PrecioTotalAcum = 0;
-var TextoPrecioProducto;
-var PrecioProducto1;
-
-// TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
-
-
-for(let x of BotonCarrito){ 
-
-   x.addEventListener('click', (parametro) => { 
-       elegido = parametro.target;
-       ProductoAgregar = elegido.parentNode.parentNode;
-       ProductoAgregarClon = ProductoAgregar.cloneNode(true);
-       ProductoAgregarClon.setAttribute('class', 'ProductoCarrito');
-       PrecioProducto = elegido.previousElementSibling.innerHTML;
-       PrecioProducto1 = PrecioProducto.slice(2);
-       PrecioProducto1 = Number.parseFloat(`${PrecioProducto1}`);
-       PrecioTotalAcum += PrecioProducto1;
-       TextoPrecioProducto = document.createTextNode(`Total: $${PrecioTotalAcum}`);
-       ventanaModal.appendChild(ProductoAgregarClon);
-       console.log(PrecioTotalAcum);
-       PrecioTotal.append(TextoPrecioProducto);
-
-  
-       })
-
-}
-
-
-let DivVentanaModalProd = document.createElement('div');
-
-main.append(DivVentanaModalProd);
-
-DivVentanaModalProd.setAttribute('class', 'VentanaModalProd');
-DivVentanaModalProd.style.display = 'none'; 
-let descripcionProd;
-console.info(descripcionProd);
-let cards = document.getElementsByClassName('itemImg'); 
-let ventanaElegida;
-let CardAClonar;
-let CardClonada; 
-
-for(let x of cards){ 
-    x.addEventListener('click', (parametro)=> { 
-        ventanaElegida = parametro.target; 
-        DivVentanaModalProd.style.display = 'flex'; 
-        DivVentanaModalProd.style.width = '20vw';
-        DivVentanaModalProd.style.height = '65vh'; 
-        DivVentanaModalProd.style.backgroundColor = 'grey';
-        descripcionProd = ventanaElegida.parentNode.nextElementSibling;
-        CardAClonar = ventanaElegida.parentNode.parentNode.parentNode;
-        console.info(CardAClonar);
-        CardClonada = CardAClonar.cloneNode(true); 
-        DivVentanaModalProd.prepend(CardClonada);
-        DivVentanaModalProd.append(descripcionProd);
-        console.info(descripcionProd);
-        console.info(ventanaElegida);
+function mostrarProductos() {
+    const contenedorProductos = document.getElementById('productos');
+    productos.forEach((productos, indice) => {
+    const productoHTML=document.createElement('div');
+    productoHTML.setAttribute('class','card');
+    productoHTML.innerHTML=`<ul>
+    <li class='itemTitle'> ${productos.titulo}</li>
+    <li class='itemImg descripcion'><img src="${productos.img}" alt="${productos.titulo}"></li>
+    <li class='itemPrice' >$${productos.precio}</li>
+    <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
+    </ul>
+    `;
+    contenedorProductos.appendChild(productoHTML);
     })
 }
+
+function agregarAlCarrito(indice){
+    const productoSeleccionado = productos[indice];
+    chango.push(productoSeleccionado);
+    totalCompra += productoSeleccionado.precio;
+    actualizarCarrito();
+
+}
+function quitarDelCarrito(indice){
+    const productoQuitado=chango[indice];
+    totalCompra-=productoQuitado.precio;
+    chango.splice(indice,1);
+    actualizarCarrito();
+}
+
+function actualizarCarrito(){
+    const carritoElement=document.getElementById('carritoContenedor');
+    carritoElement.innerHTML=''
+    chango.forEach((producto, indice) => {
+        const itemCarrito=document.createElement('div');
+        itemCarrito.setAttribute('class','card');
+        itemCarrito.setAttribute('class','ProductoCarrito');
+        itemCarrito.innerHTML= `<ul>
+        <li class='itemTitle'> ${producto.titulo}</li>
+        <li class='itemImg'><img src="${producto.img}" alt="${producto.titulo}"></li>
+        <li class='itemPrice' >$${producto.precio}</li>
+        <li class='quitar' onclick='quitarDelCarrito(${indice})'>quitar</li>
+        
+        </ul>
+        `;
+        carritoElement.prepend(itemCarrito);
+    });
+    PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+    }
+
+
+mostrarProductos();
+
+let cardProd = document.getElementsByClassName('card');
+console.info(cardProd);
+
+
+for(let x of cardProd){
+    x.addEventListener('mouseover', function(){
+        this.style.backgroundColor='#f19d57';
+    });
+    x.addEventListener('mouseout',function(){
+        this.style.backgroundColor='#dddd';
+    })
+}
+
+
+
+function mostrarDescripcionProducto(producto) {
+    const descripcionModal = document.createElement('div');
+    descripcionModal.setAttribute('class', 'DescripcionModal');
+    descripcionModal.style.display = 'none';
+
+    const ventanaModalX = document.createElement('div');
+    ventanaModalX.setAttribute('class', 'CerrarModalX');
+    ventanaModalX.addEventListener('click', () => {
+        descripcionModal.style.display = 'none';
+    });
+
+    const descripcionProducto = document.createElement('div');
+    descripcionProducto.setAttribute('id', 'descripcionProducto');
+    descripcionProducto.innerHTML = `
+        <img src="${producto.img}" alt="${producto.titulo}">
+        <div class='itemTitle'>${producto.titulo}</div>
+        <div class='itemDesc'>${producto.descripcion}</div>
+        <div class='itemPrice'>$${producto.precio}</div>
+    `;
+
+    descripcionModal.appendChild(ventanaModalX);
+    descripcionModal.appendChild(descripcionProducto);
+    document.body.appendChild(descripcionModal);
+    descripcionModal.style.display = 'flex';
+
+
+    descripcionProducto.addEventListener('mouseleave',()=>{
+        descripcionModal.style.display='none';
+    })
+}
+
+const cardProductos = document.querySelectorAll('.itemTitle');
+cardProductos.forEach((card, indice) => {
+    card.addEventListener('mouseover', () => {
+        mostrarDescripcionProducto(productos[indice]);
+    });
+});
+
+
+
+
