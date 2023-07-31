@@ -32,9 +32,7 @@ nav ul{
     width: 50px;
     margin-left: 90%;
 }
-nav ul li{ 
-    text-indent: -9999px;
-}
+
 #Carrito{ 
     background: url(Recursos/carrito-de-compras.png) no-repeat;
     background-size: cover;
@@ -297,7 +295,9 @@ footer ul li a{
     height: 25px;
     border-radius: 50%;
     color: #000;
-    font-size: 1rem;
-    text-align: center;
-    
+    font-size:16px;
+    justify-content: center;
+    align-content: center;
+    font-weight: 600;
+
 }
