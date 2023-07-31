@@ -6,7 +6,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+/* Header */
 ul{ 
     list-style: none;
 }
@@ -40,6 +40,7 @@ nav ul li{
     height: 1.5rem;
     
 }
+/* Main */
 .card{
     width: 250px;
     height: 350px;
@@ -48,7 +49,7 @@ nav ul li{
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: #dddddd;
+    background-color: #dddd;
     border-radius: 5%;
     margin-top: 0.5rem;
     box-shadow: #000 1px 1px 10px;
@@ -75,22 +76,25 @@ main{
     margin-top: 2rem;
     gap: 1rem;
 }
-
+#productos .card ul{
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
 .itemTitle{
+    background: inherit;
     font-size: 0.8rem;
     font-weight: 500;
     margin: 0.2rem;
-    height: rem;
-}
-.itemDesc{ 
-    font-weight: 500;
-    font-size: 0.5rem;
-    margin: 0.2rem;
-    height: 70px;
+    padding-top: 7%;
+    font-weight: 600;
 }
 .itemPrice{
-    font-size: 1rem;
+    background: inherit;
+    font-size: 2rem;
     font-weight: 600;
+    padding-top: 1.4rem;
 }
 .agregar{
     text-indent: -9999px;
@@ -101,6 +105,7 @@ main{
     margin:auto;
 }
 
+/* Footer */
 footer{
     background: #000;
     color: #dddddd;
@@ -127,6 +132,7 @@ footer ul li a{
     color: #dddddd;
 }
 
+/* Carrito */
 .ProductoCarrito{
     width: 300px;
     height: auto;
@@ -137,12 +143,11 @@ footer ul li a{
     order: 1;
 }
 .ProductoCarrito ul{
-    width: 300px;
+    width: 330px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-
-
+    max-height: 500px;
 }
 .ProductoCarrito ul li img{
     width:80px;
@@ -152,15 +157,18 @@ footer ul li a{
 .ProductoCarrito .agregar{
     display: none;
 }
-
 .ProductoCarrito .itemImg{
     order: 1;
 }
 .ProductoCarrito .itemTitle{
     order:2;
+    font-size: 0.5rem;
+    width: 40%;
+    padding-top: 7%;
 }
 .ProductoCarrito .itemPrice{
     order: 3;
+    font-size: 0.8rem;
 }
 .VentanaModalX{
     margin-bottom: 5px;
@@ -184,7 +192,12 @@ footer ul li a{
     height: 40px;
     margin-top: 50px;
 }
-
+.carrovacio{
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    text-justify: center;
+}
 .quitar{
     text-indent: -9999px;
     background: url(Recursos/quitar.svg) no-repeat;
@@ -192,10 +205,91 @@ footer ul li a{
     width: 28px;
     height: 29px;
     margin:auto;
+    order: 4;
 }
-.carrovacio{
-    font-size: 1rem;
+
+
+
+/* modaldesc */
+
+.DescripcionModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
-    text-justify: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    overflow-y: auto;
+}
+
+#descripcionProducto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 400px;
+    margin: auto;
+    background-color: #dddddd;
+    padding: 10px;
+    border-radius: 5%;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#descripcionProducto img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
+    margin-top: 20px;
+}
+
+#descripcionProducto .itemTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+#descripcionProducto .itemDesc {
+    font-weight: 500;
+}
+
+#descripcionProducto .itemPrice {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.VentanaModal {
+    overscroll-behavior: none;
+    border-radius: 15px;
+    padding-top: 10px;
+    border: 1px rgb(158, 158, 158) solid;
+}
+
+.PrecioTotal {
+    order: 3;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(224, 222, 222);
+    border-radius: 5%;
+    width: 100%;
+    height: 40px;
+    margin-top: 40px;
+}
+
+.CerrarModalX {
+    margin-bottom: 5px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background: url(cerrar.png) no-repeat center;
+    background-color: #dddddd;
+    background-size: cover;
+    margin-right: 5px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
 }
