@@ -50,7 +50,7 @@ const productos = [
 let chango = [];
 let totalCompra = 0;
 let tamanocarrito= document.getElementById('tamanoCarrito');
-tamanocarrito.innerHTML=chango.length;
+tamanocarrito.innerHTML=Object.keys(chango).length;
 
 
 
@@ -62,7 +62,9 @@ let carrito = document.getElementById("Carrito") ;
 ventanaModal.style.display = 'none';  
 
 
-let carritocontenedor=document.createElement('div')
+let carritocontenedor=document.createElement('div');
+carritocontenedor.setAttribute('id','carritoContenedor');
+ventanaModal.prepend(carritocontenedor);
 let VentanaModalX = document.createElement('div'); 
 var PrecioTotal = document.createElement('div') ; 
 ventanaModal.appendChild(PrecioTotal);
@@ -83,8 +85,6 @@ carrito.addEventListener('mouseover', (parametro) => {
    ventanaModal.style.top = '60px'
    ventanaModal.style.right = '40px'
    ventanaModal.style.overflowY = 'auto';
-   ventanaModal.prepend(carritocontenedor);
-   carritocontenedor.setAttribute('id','carritoContenedor');
    ventanaModal.prepend(VentanaModalX); 
    VentanaModalX.setAttribute('class', 'VentanaModalX')
    VentanaModalX.style.width = '25px'; 
@@ -158,10 +158,10 @@ function actualizarCarrito(){
 
 mostrarProductos();
 
+
+
 let cardProd = document.getElementsByClassName('card');
 console.info(cardProd);
-
-
 for(let x of cardProd){
     x.addEventListener('mouseover', function(){
         this.style.backgroundColor='#f19d57';
@@ -177,28 +177,22 @@ function mostrarDescripcionProducto(producto) {
     const descripcionModal = document.createElement('div');
     descripcionModal.setAttribute('class', 'DescripcionModal');
     descripcionModal.style.display = 'none';
-
     const ventanaModalX = document.createElement('div');
     ventanaModalX.setAttribute('class', 'CerrarModalX');
     ventanaModalX.addEventListener('click', () => {
         descripcionModal.style.display = 'none';
     });
-
     const descripcionProducto = document.createElement('div');
     descripcionProducto.setAttribute('id', 'descripcionProducto');
     descripcionProducto.innerHTML = `
         <img src="${producto.img}" alt="${producto.titulo}">
         <div class='itemTitle'>${producto.titulo}</div>
         <div class='itemDesc'>${producto.descripcion}</div>
-        <div class='itemPrice'>$${producto.precio}</div>
-    `;
-
+        <div class='itemPrice'>$${producto.precio}</div> `;
     descripcionModal.appendChild(ventanaModalX);
     descripcionModal.appendChild(descripcionProducto);
     document.body.appendChild(descripcionModal);
     descripcionModal.style.display = 'flex';
-
-
     descripcionProducto.addEventListener('mouseleave',()=>{
         descripcionModal.style.display='none';
     })

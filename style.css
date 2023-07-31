@@ -29,6 +29,8 @@ nav ul{
     display: flex;
     justify-content: space-between;
     list-style: none;
+    width: 50px;
+    margin-left: 90%;
 }
 nav ul li{ 
     text-indent: -9999px;
@@ -192,12 +194,7 @@ footer ul li a{
     height: 40px;
     margin-top: 50px;
 }
-.carrovacio{
-    font-size: 1rem;
-    width: 100%;
-    text-align: center;
-    text-justify: center;
-}
+
 .quitar{
     text-indent: -9999px;
     background: url(Recursos/quitar.svg) no-repeat;
@@ -292,4 +289,15 @@ footer ul li a{
     top: 10px;
     right: 10px;
     border-radius: 50%;
+}
+#tamanoCarrito{
+    display: flex;
+    background: #dddd;
+    width:25px;
+    height: 25px;
+    border-radius: 50%;
+    color: #000;
+    font-size: 1rem;
+    text-align: center;
+    
 }
