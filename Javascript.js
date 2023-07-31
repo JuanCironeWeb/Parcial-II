@@ -49,6 +49,8 @@ const productos = [
 
 let chango = [];
 let totalCompra = 0;
+let tamanocarrito= document.getElementById('tamanoCarrito');
+tamanocarrito.innerHTML=chango.length;
 
 
 
@@ -134,7 +136,7 @@ function quitarDelCarrito(indice){
 
 function actualizarCarrito(){
     const carritoElement=document.getElementById('carritoContenedor');
-    carritoElement.innerHTML=''
+    carritoElement.innerHTML='';
     chango.forEach((producto, indice) => {
         const itemCarrito=document.createElement('div');
         itemCarrito.setAttribute('class','card');
@@ -150,6 +152,7 @@ function actualizarCarrito(){
         carritoElement.prepend(itemCarrito);
     });
     PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+    tamanocarrito.innerHTML=chango.length;
     }
 
 
