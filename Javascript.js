@@ -182,6 +182,39 @@ function actualizarCarrito(){
 
 mostrarProductos();
 
+let DivBotonVaciarCarrito = document.createElement('div');
+DivBotonVaciarCarrito.setAttribute('class', 'BotonVaciar')
+let BotonVaciarCarrito = document.createElement('button')
+let TextoBotonVaciarCarrito = document.createTextNode('Vaciar Carrito'); 
+DivBotonVaciarCarrito.append(BotonVaciarCarrito); 
+BotonVaciarCarrito.append(TextoBotonVaciarCarrito);
+ventanaModal.append(DivBotonVaciarCarrito);
+DivBotonVaciarCarrito.style.display = 'flex'; 
+DivBotonVaciarCarrito.style.order = '2';
+DivBotonVaciarCarrito.style.justifyContent = 'center'; 
+DivBotonVaciarCarrito.style.alignItems = 'center';
+DivBotonVaciarCarrito.style.alignSelf = 'center';
+BotonVaciarCarrito.style.border = '1px solid black'
+BotonVaciarCarrito.style.width = '120px';
+BotonVaciarCarrito.style.height = '20px';
+BotonVaciarCarrito.style.fontSize = '12px';
+BotonVaciarCarrito.style.background = 'transparent'; 
+BotonVaciarCarrito.style.borderRadius = '4px';
+BotonVaciarCarrito.style.marginBottom= '10px';
+
+
+
+BotonVaciarCarrito.addEventListener('click', () => { 
+    const carritoElement=document.getElementById('carritoContenedor');
+    carritoElement.innerHTML='';
+    chango = [];
+    let tamanocarrito= document.getElementById('tamanoCarrito');
+        tamanocarrito.innerHTML='0';
+        let PrecioTotal = document.getElementById('total');
+        PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+
+})
+
 
 
 let cardProd = document.getElementsByClassName('card');
