@@ -76,6 +76,30 @@ main{
     margin-top: 2rem;
     gap: 1rem;
 }
+#ItemsKit{
+    max-width: 900px;
+    min-width: 330px;
+    margin: 1rem;
+    display: flex;
+    justify-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+#ItemsMacetas{
+    max-width: 900px;
+    min-width: 330px;
+    margin: 1rem;
+    display: flex;
+    justify-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 1rem;
+}
 #productos .card ul{
     height: 350px;
     display: flex;

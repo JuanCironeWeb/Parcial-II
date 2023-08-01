@@ -13,7 +13,6 @@ const productos = [
     img:"productos/item2.jpg",
     precio:79900,
     descripcion:"Tejido fuerte y resistente Nylon 420D Estructura patentada, fuerte y estable Mylar premium reflectividad 97%",
-    categoria:"Kit"
 },
 {
     titulo:"Maceta Mad Rocket 16 Litros Cultivo Indoor Gabba Grow Olivos",
@@ -53,11 +52,43 @@ let totalCompra = 0;
 
 
 let main = document.querySelector('main') ; 
+main.style.flexDirection = 'column';
 let ventanaModal = document.createElement('div');
 main.append(ventanaModal);
 ventanaModal.setAttribute('class', 'VentanaModal')
 let carrito = document.getElementById("Carrito") ; 
 ventanaModal.style.display = 'none';  
+
+/* Categorias */
+let CrearDivCategorias = document.createElement('div'); 
+main.prepend(CrearDivCategorias); 
+
+CrearDivCategorias.setAttribute('id', 'DivCategorias');
+CrearDivCategorias.style.display = 'block'; 
+CrearDivCategorias.style.width = '100vw'; 
+CrearDivCategorias.style.padding = '3%'; 
+
+let BotonCats = document.createElement('button'); 
+let textoBotonCats = document.createTextNode('Todos los productos');
+BotonCats.append(textoBotonCats);
+BotonCats.setAttribute('onclick', 'mostrarProductos2()');
+
+let BotonCatKit = document.createElement('button'); 
+let textoBotonCatKit = document.createTextNode('Kits');
+BotonCatKit.append(textoBotonCatKit);
+BotonCatKit.setAttribute('onclick', 'mostrarCatKit()')
+
+let BotonCatMaceta = document.createElement('button'); 
+let textoBotonCatMaceta = document.createTextNode('Macetas');
+BotonCatMaceta.append(textoBotonCatMaceta);
+BotonCatMaceta.setAttribute('onclick', 'mostrarCatMacetas()')
+
+let BotonCatLuces = document.createElement('button'); 
+let textoBotonCatLuces = document.createTextNode('Luces');
+BotonCatLuces.append(textoBotonCatLuces);
+BotonCatLuces.setAttribute('onclick', 'mostrarCatLuces()')
+
+CrearDivCategorias.append(BotonCats, BotonCatKit, BotonCatMaceta, BotonCatLuces);
 
 let VentanaModalX = document.createElement('div'); 
 var PrecioTotal = document.createElement('div') ;
@@ -193,3 +224,64 @@ for(let x of cardProd){
         ProdElegido.style.transform = 'scale(1)';
     })
 }
+
+
+let kit = productos.filter(CatKit); 
+function CatKit(valor) { 
+return valor.categoria == 'kit'; 
+}
+
+let macetas = productos.filter(CatMacetas);
+function CatMacetas(valor){ 
+    return valor.categoria == 'macetas';
+}
+
+let luces = productos.filter(CatLuces); 
+function CatLuces(valor){ 
+    return valor.categoria == 'luces';
+}
+
+let DivItemsKit = document.createElement('div')
+    DivItemsKit.setAttribute('id', 'ItemsKit');
+    DivItemsKit.style.display = 'flex';
+    main.append(DivItemsKit); 
+
+
+    function mostrarCatKit(){
+        let contenedorProductos = document.getElementById('productos'); 
+        kit.forEach((productos, indice) => {
+            const productoHTML=document.createElement('div');
+            productoHTML.setAttribute('class','card');
+            productoHTML.innerHTML=`<ul>
+            <li class='itemTitle'> ${productos.titulo}</li>
+            <li class='itemImg'><img src="${productos.img}" alt="${productos.titulo}"></li>
+            <li class='itemDesc'>${productos.descripcion}</li> 
+            <li class='itemPrice' >$${productos.precio}</li>
+            <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
+            </ul>
+            `;
+            contenedorProductos.appendChild(productoHTML);
+            })    
+    }
+  
+    let DivItemsMacetas = document.createElement('div')
+    DivItemsMacetas.setAttribute('id', 'ItemsMacetas');
+    DivItemsMacetas.style.display = 'flex';
+    main.append(DivItemsMacetas); 
+
+    function mostrarCatMacetas(){
+        let contenedorProductos = document.getElementById('ItemsMacetas').innerHTML = '';
+        kit.forEach((productos, indice) => {
+            const productoHTML=document.createElement('div');
+            productoHTML.setAttribute('class','card');
+            productoHTML.innerHTML=`<ul>
+            <li class='itemTitle'> ${productos.titulo}</li>
+            <li class='itemImg'><img src="${productos.img}" alt="${productos.titulo}"></li>
+            <li class='itemDesc'>${productos.descripcion}</li> 
+            <li class='itemPrice' >$${productos.precio}</li>
+            <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
+            </ul>
+            `;
+            contenedorProductos.appendChild(productoHTML);
+            })    
+    }
