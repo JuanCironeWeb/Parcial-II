@@ -51,6 +51,7 @@ let chango = [];
 let totalCompra = 0;
 let tamanocarrito= document.getElementById('tamanoCarrito');
 tamanocarrito.innerHTML=Object.keys(chango).length;
+tamanocarrito.style.display='none';
 
 
 
@@ -168,9 +169,11 @@ function actualizarCarrito(){
         Pagar.style.display='flex';
         Pagar.innerHTML=`Ir a pagar`;
         PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+        tamanocarrito.style.display='flex';
     }else{
         Pagar.style.display='none';
         PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+        tamanocarrito.style.display='none';
     }
 
     }
