@@ -13,6 +13,7 @@ const productos = [
     img:"productos/item2.jpg",
     precio:79900,
     descripcion:"Tejido fuerte y resistente Nylon 420D Estructura patentada, fuerte y estable Mylar premium reflectividad 97%",
+    categoria:"kit"
 },
 {
     titulo:"Maceta Mad Rocket 16 Litros Cultivo Indoor Gabba Grow Olivos",
