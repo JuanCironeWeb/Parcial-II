@@ -70,7 +70,12 @@ var PrecioTotal = document.createElement('div') ;
 ventanaModal.appendChild(PrecioTotal);
 PrecioTotal.setAttribute('id','total');
 PrecioTotal.setAttribute('class','PrecioTotal');
-PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+var Pagar=document.createElement('div');
+ventanaModal.appendChild(Pagar);
+Pagar.setAttribute('id','pagar');
+Pagar.style.display='none';
+
 
 
 
@@ -137,6 +142,10 @@ function quitarDelCarrito(indice){
 function actualizarCarrito(){
     const carritoElement=document.getElementById('carritoContenedor');
     carritoElement.innerHTML='';
+
+    
+    
+
     chango.forEach((producto, indice) => {
         const itemCarrito=document.createElement('div');
         itemCarrito.setAttribute('class','card');
@@ -153,6 +162,17 @@ function actualizarCarrito(){
     });
     PrecioTotal.innerHTML =`Total:$${totalCompra}`;
     tamanocarrito.innerHTML=chango.length;
+
+
+    if(chango.length>0){
+        Pagar.style.display='flex';
+        Pagar.innerHTML=`Ir a pagar`;
+        PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+    }else{
+        Pagar.style.display='none';
+        PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+    }
+
     }
 
 
