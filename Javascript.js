@@ -13,7 +13,7 @@ const productos = [
     img:"productos/item2.jpg",
     precio:79900,
     descripcion:"Tejido fuerte y resistente Nylon 420D Estructura patentada, fuerte y estable Mylar premium reflectividad 97%",
-    categoria:"Kit"
+    categoria:"kit"
 },
 {
     titulo:"Maceta Mad Rocket 16 Litros Cultivo Indoor Gabba Grow Olivos",
@@ -112,6 +112,7 @@ VentanaModalX.addEventListener('click', (parametro) => {
 
 function mostrarProductos() {
     const contenedorProductos = document.getElementById('productos');
+    contenedorProductos.innerHTML='';
     productos.forEach((productos, indice) => {
     const productoHTML=document.createElement('div');
     productoHTML.setAttribute('class','card');
@@ -281,3 +282,116 @@ function mostrarOfertaModal() {
 window.addEventListener('load', () => {
     mostrarOfertaModal();
 });
+
+
+/* Filtrar Categorias */
+
+let CrearDivCategorias = document.createElement('div'); 
+main.prepend(CrearDivCategorias); 
+
+CrearDivCategorias.setAttribute('id', 'DivCategorias');
+CrearDivCategorias.style.display = 'block'; 
+CrearDivCategorias.style.width = '100vw'; 
+CrearDivCategorias.style.padding = '3%'; 
+
+let BotonCats = document.createElement('button'); 
+let textoBotonCats = document.createTextNode('Todos los productos');
+BotonCats.append(textoBotonCats);
+BotonCats.setAttribute('onclick', 'mostrarProductos()');
+
+let BotonCatKit = document.createElement('button'); 
+let textoBotonCatKit = document.createTextNode('Kits');
+BotonCatKit.append(textoBotonCatKit);
+BotonCatKit.setAttribute('onclick', 'mostrarCatKit()')
+
+let BotonCatMaceta = document.createElement('button'); 
+let textoBotonCatMaceta = document.createTextNode('Macetas');
+BotonCatMaceta.append(textoBotonCatMaceta);
+BotonCatMaceta.setAttribute('onclick', 'mostrarCatMacetas()')
+
+let BotonCatLuces = document.createElement('button'); 
+let textoBotonCatLuces = document.createTextNode('Luces');
+BotonCatLuces.append(textoBotonCatLuces);
+BotonCatLuces.setAttribute('onclick', 'mostrarCatLuces()')
+
+CrearDivCategorias.append(BotonCats, BotonCatKit, BotonCatMaceta, BotonCatLuces);
+main.style.flexDirection = 'column';
+let kit = productos.filter(CatKit); 
+function CatKit(valor) { 
+return valor.categoria == 'kit'; 
+}
+console.log(kit);
+let macetas = productos.filter(CatMacetas);
+function CatMacetas(valor){ 
+    return valor.categoria == 'macetas';
+}
+console.log(macetas); 
+
+let luces = productos.filter(CatLuces); 
+function CatLuces(valor){ 
+    return valor.categoria == 'luces';
+}
+console.log(luces);
+
+
+
+
+    function mostrarCatKit(){
+        let contenedorProductos = document.getElementById('productos'); 
+        contenedorProductos.innerHTML='';
+
+        console.log(kit);
+        kit.forEach((productos, indice) => {
+            const productoHTML=document.createElement('div');
+            productoHTML.setAttribute('class','card');
+            productoHTML.innerHTML=`<ul>
+            <li class='itemTitle'> ${productos.titulo}</li>
+            <li class='itemImg descripcion'><img src="${productos.img}" alt="${productos.titulo}"></li>
+            <li class='itemPrice' >$${productos.precio}</li>
+            <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
+            </ul>
+            `;
+            contenedorProductos.appendChild(productoHTML);
+            })
+    }
+
+
+    function mostrarCatMacetas(){
+        let contenedorProductos = document.getElementById('productos'); 
+        contenedorProductos.innerHTML='';
+
+        console.log(macetas);
+        macetas.forEach((productos, indice) => {
+            const productoHTML=document.createElement('div');
+            productoHTML.setAttribute('class','card');
+            productoHTML.innerHTML=`<ul>
+            <li class='itemTitle'> ${productos.titulo}</li>
+            <li class='itemImg descripcion'><img src="${productos.img}" alt="${productos.titulo}"></li>
+            <li class='itemPrice' >$${productos.precio}</li>
+            <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
+            </ul>
+            `;
+            contenedorProductos.appendChild(productoHTML);
+            })
+    }
+
+    function mostrarCatLuces(){
+        let contenedorProductos = document.getElementById('productos'); 
+        contenedorProductos.innerHTML='';
+
+        console.log(macetas);
+        luces.forEach((productos, indice) => {
+            const productoHTML=document.createElement('div');
+            productoHTML.setAttribute('class','card');
+            productoHTML.innerHTML=`<ul>
+            <li class='itemTitle'> ${productos.titulo}</li>
+            <li class='itemImg descripcion'><img src="${productos.img}" alt="${productos.titulo}"></li>
+            <li class='itemPrice' >$${productos.precio}</li>
+            <li class='agregar' onclick='agregarAlCarrito(${indice})'>Agregar al carrito</li>
+            </ul>
+            `;
+            contenedorProductos.appendChild(productoHTML);
+            })
+    }
+
+    
