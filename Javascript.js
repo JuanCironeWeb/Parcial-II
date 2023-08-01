@@ -208,3 +208,53 @@ cardProductos.forEach((card, indice) => {
 
 
 
+
+function mostrarOfertaModal() {
+    const pantallaGris = document.createElement('div');
+    pantallaGris.setAttribute('class', 'PantallaGris');
+    document.body.appendChild(pantallaGris);
+
+    const ofertaModal = document.createElement('div');
+    ofertaModal.setAttribute('class', 'VentanaModal');
+
+    const mensajeOferta = document.createElement('div');
+    mensajeOferta.setAttribute('class', 'MensajeOferta');
+    mensajeOferta.innerHTML = `
+        <h2>Aprovecha la oferta solo por 10 minutos.</h2>
+        <p>Con el código BLOOMBUDDY tienes un descuento del 25%!!!</p>
+        <p>No te la pierdas!</p>
+        <button class="CerrarBoton">Cerrar</button>
+    `;
+
+    ofertaModal.appendChild(mensajeOferta);
+    document.body.appendChild(ofertaModal);
+
+    ofertaModal.style.display = 'flex';
+    ofertaModal.style.flexDirection = 'column';
+    ofertaModal.style.width = '350px';
+    ofertaModal.style.minHeight = '100px';
+    ofertaModal.style.backgroundColor = '#f19d57';
+    ofertaModal.style.position = 'fixed';
+    ofertaModal.style.top = '50%';
+    ofertaModal.style.left = '50%';
+    ofertaModal.style.transform = 'translate(-50%, -50%)';
+    ofertaModal.style.padding = '20px';
+    ofertaModal.style.borderRadius = '15px';
+    ofertaModal.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
+    ofertaModal.style.zIndex = '999';
+
+    const cerrarBoton = mensajeOferta.querySelector('.CerrarBoton');
+    cerrarBoton.addEventListener('click', () => {
+        ofertaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    });
+
+    setTimeout(() => {
+        ofertaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    }, 10000);
+}
+
+window.addEventListener('load', () => {
+    mostrarOfertaModal();
+});
