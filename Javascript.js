@@ -50,7 +50,8 @@ const productos = [
 let chango = [];
 let totalCompra = 0;
 let tamanocarrito= document.getElementById('tamanoCarrito');
-tamanocarrito.innerHTML=chango.length;
+tamanocarrito.innerHTML=Object.keys(chango).length;
+tamanocarrito.style.display='none';
 
 
 
@@ -62,13 +63,20 @@ let carrito = document.getElementById("Carrito") ;
 ventanaModal.style.display = 'none';  
 
 
-let carritocontenedor=document.createElement('div')
+let carritocontenedor=document.createElement('div');
+carritocontenedor.setAttribute('id','carritoContenedor');
+ventanaModal.prepend(carritocontenedor);
 let VentanaModalX = document.createElement('div'); 
 var PrecioTotal = document.createElement('div') ; 
 ventanaModal.appendChild(PrecioTotal);
 PrecioTotal.setAttribute('id','total');
 PrecioTotal.setAttribute('class','PrecioTotal');
-PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+var Pagar=document.createElement('div');
+ventanaModal.appendChild(Pagar);
+Pagar.setAttribute('id','pagar');
+Pagar.style.display='none';
+
 
 
 
@@ -83,8 +91,6 @@ carrito.addEventListener('mouseover', (parametro) => {
    ventanaModal.style.top = '60px'
    ventanaModal.style.right = '40px'
    ventanaModal.style.overflowY = 'auto';
-   ventanaModal.prepend(carritocontenedor);
-   carritocontenedor.setAttribute('id','carritoContenedor');
    ventanaModal.prepend(VentanaModalX); 
    VentanaModalX.setAttribute('class', 'VentanaModalX')
    VentanaModalX.style.width = '25px'; 
@@ -137,6 +143,10 @@ function quitarDelCarrito(indice){
 function actualizarCarrito(){
     const carritoElement=document.getElementById('carritoContenedor');
     carritoElement.innerHTML='';
+
+    
+    
+
     chango.forEach((producto, indice) => {
         const itemCarrito=document.createElement('div');
         itemCarrito.setAttribute('class','card');
@@ -153,15 +163,28 @@ function actualizarCarrito(){
     });
     PrecioTotal.innerHTML =`Total:$${totalCompra}`;
     tamanocarrito.innerHTML=chango.length;
+
+
+    if(chango.length>0){
+        Pagar.style.display='flex';
+        Pagar.innerHTML=`Ir a pagar`;
+        PrecioTotal.innerHTML =`Total:$${totalCompra}`;
+        tamanocarrito.style.display='flex';
+    }else{
+        Pagar.style.display='none';
+        PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+        tamanocarrito.style.display='none';
+    }
+
     }
 
 
 mostrarProductos();
 
+
+
 let cardProd = document.getElementsByClassName('card');
 console.info(cardProd);
-
-
 for(let x of cardProd){
     x.addEventListener('mouseover', function(){
         this.style.backgroundColor='#f19d57';
@@ -177,28 +200,22 @@ function mostrarDescripcionProducto(producto) {
     const descripcionModal = document.createElement('div');
     descripcionModal.setAttribute('class', 'DescripcionModal');
     descripcionModal.style.display = 'none';
-
     const ventanaModalX = document.createElement('div');
     ventanaModalX.setAttribute('class', 'CerrarModalX');
     ventanaModalX.addEventListener('click', () => {
         descripcionModal.style.display = 'none';
     });
-
     const descripcionProducto = document.createElement('div');
     descripcionProducto.setAttribute('id', 'descripcionProducto');
     descripcionProducto.innerHTML = `
         <img src="${producto.img}" alt="${producto.titulo}">
         <div class='itemTitle'>${producto.titulo}</div>
         <div class='itemDesc'>${producto.descripcion}</div>
-        <div class='itemPrice'>$${producto.precio}</div>
-    `;
-
+        <div class='itemPrice'>$${producto.precio}</div> `;
     descripcionModal.appendChild(ventanaModalX);
     descripcionModal.appendChild(descripcionProducto);
     document.body.appendChild(descripcionModal);
     descripcionModal.style.display = 'flex';
-
-
     descripcionProducto.addEventListener('mouseleave',()=>{
         descripcionModal.style.display='none';
     })
@@ -214,3 +231,53 @@ cardProductos.forEach((card, indice) => {
 
 
 
+
+function mostrarOfertaModal() {
+    const pantallaGris = document.createElement('div');
+    pantallaGris.setAttribute('class', 'PantallaGris');
+    document.body.appendChild(pantallaGris);
+
+    const ofertaModal = document.createElement('div');
+    ofertaModal.setAttribute('class', 'VentanaModal');
+
+    const mensajeOferta = document.createElement('div');
+    mensajeOferta.setAttribute('class', 'MensajeOferta');
+    mensajeOferta.innerHTML = `
+        <h2>Aprovecha la oferta solo por 10 minutos.</h2>
+        <p>Con el código BLOOMBUDDY tienes un descuento del 25%!!!</p>
+        <p>No te la pierdas!</p>
+        <button class="CerrarBoton">Cerrar</button>
+    `;
+
+    ofertaModal.appendChild(mensajeOferta);
+    document.body.appendChild(ofertaModal);
+
+    ofertaModal.style.display = 'flex';
+    ofertaModal.style.flexDirection = 'column';
+    ofertaModal.style.width = '350px';
+    ofertaModal.style.minHeight = '100px';
+    ofertaModal.style.backgroundColor = '#f19d57';
+    ofertaModal.style.position = 'fixed';
+    ofertaModal.style.top = '50%';
+    ofertaModal.style.left = '50%';
+    ofertaModal.style.transform = 'translate(-50%, -50%)';
+    ofertaModal.style.padding = '20px';
+    ofertaModal.style.borderRadius = '15px';
+    ofertaModal.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
+    ofertaModal.style.zIndex = '999';
+
+    const cerrarBoton = mensajeOferta.querySelector('.CerrarBoton');
+    cerrarBoton.addEventListener('click', () => {
+        ofertaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    });
+
+    setTimeout(() => {
+        ofertaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    }, 10000);
+}
+
+window.addEventListener('load', () => {
+    mostrarOfertaModal();
+});
