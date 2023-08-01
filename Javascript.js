@@ -111,6 +111,7 @@ VentanaModalX.addEventListener('click', (parametro) => {
 
 
 function mostrarProductos() {
+    MostrarVentanaCategoria();
     const contenedorProductos = document.getElementById('productos');
     contenedorProductos.innerHTML='';
     productos.forEach((productos, indice) => {
@@ -212,7 +213,6 @@ BotonVaciarCarrito.addEventListener('click', () => {
         tamanocarrito.innerHTML='0';
         let PrecioTotal = document.getElementById('total');
         PrecioTotal.innerHTML =`No hay elementos en el carrito`;
-
 })
 
 
@@ -421,6 +421,7 @@ console.log(luces);
 
 
     function mostrarCatKit(){
+        MostrarVentanaCategoria();
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
 
@@ -440,6 +441,7 @@ console.log(luces);
     }
 
     function mostrarCatMacetas(){
+        MostrarVentanaCategoria();
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
 
@@ -459,6 +461,7 @@ console.log(luces);
     }
 
     function mostrarCatLuces(){
+        MostrarVentanaCategoria();
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
 
@@ -478,3 +481,28 @@ console.log(luces);
     }
 
     
+/* OFERTA CATEGORIAS */
+
+function MostrarVentanaCategoria(){ 
+    let VentanaCategoriaKit = document.createElement('div')
+        main.append(VentanaCategoriaKit);
+        VentanaCategoriaKit.style.display = 'flex';
+        VentanaCategoriaKit.style.width = '50vw';
+        VentanaCategoriaKit.style.height = '30vh';
+        VentanaCategoriaKit.style.backgroundColor= 'red';
+        VentanaCategoriaKit.style.position = 'fixed';
+        VentanaCategoriaKit.style.top = '30vh';    
+        VentanaCategoriaKit.style.zIndex = '999';
+
+
+        const pantallaGris = document.createElement('div');
+    pantallaGris.setAttribute('class', 'PantallaGris');
+    document.body.appendChild(pantallaGris);
+    
+    
+        setTimeout(() => {
+            VentanaCategoriaKit.style.display = 'none';
+            pantallaGris.style.display = 'none';
+        }, 10000);
+
+}
