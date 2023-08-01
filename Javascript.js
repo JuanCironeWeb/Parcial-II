@@ -290,29 +290,82 @@ let CrearDivCategorias = document.createElement('div');
 main.prepend(CrearDivCategorias); 
 
 CrearDivCategorias.setAttribute('id', 'DivCategorias');
-CrearDivCategorias.style.display = 'block'; 
-CrearDivCategorias.style.width = '100vw'; 
+CrearDivCategorias.style.display = 'flex'; 
+CrearDivCategorias.style.justifyContent= 'space-evenly';
+CrearDivCategorias.style.width = '50vw'; 
 CrearDivCategorias.style.padding = '3%'; 
 
 let BotonCats = document.createElement('button'); 
 let textoBotonCats = document.createTextNode('Todos los productos');
 BotonCats.append(textoBotonCats);
 BotonCats.setAttribute('onclick', 'mostrarProductos()');
+BotonCats.style.background = 'transparent';
+BotonCats.style.padding = '10px';
+BotonCats.style.border = '2px solid #f19d57';
+BotonCats.style.borderRadius = '10px';
+BotonCats.addEventListener('mouseover', () => { 
+    BotonCats.style.backgroundColor = '#f19d57'; 
+    BotonCats.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+
+})
+BotonCats.addEventListener('mouseleave', () => { 
+    BotonCats.style.background = 'transparent'; 
+    BotonCats.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
+
+})
 
 let BotonCatKit = document.createElement('button'); 
 let textoBotonCatKit = document.createTextNode('Kits');
 BotonCatKit.append(textoBotonCatKit);
 BotonCatKit.setAttribute('onclick', 'mostrarCatKit()')
+BotonCatKit.style.background = 'transparent';
+BotonCatKit.style.padding = '10px';
+BotonCatKit.style.border = '2px solid #f19d57';
+BotonCatKit.style.borderRadius = '10px';
+BotonCatKit.addEventListener('mouseover', () => { 
+    BotonCatKit.style.backgroundColor = '#f19d57'; 
+    BotonCatKit.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+})
+BotonCatKit.addEventListener('mouseleave', () => { 
+    BotonCatKit.style.background = 'transparent'; 
+    BotonCatKit.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
+
+})
 
 let BotonCatMaceta = document.createElement('button'); 
 let textoBotonCatMaceta = document.createTextNode('Macetas');
 BotonCatMaceta.append(textoBotonCatMaceta);
 BotonCatMaceta.setAttribute('onclick', 'mostrarCatMacetas()')
+BotonCatMaceta.style.background = 'transparent';
+BotonCatMaceta.style.padding = '10px';
+BotonCatMaceta.style.border = '2px solid #f19d57';
+BotonCatMaceta.style.borderRadius = '10px';
+BotonCatMaceta.addEventListener('mouseover', () => { 
+    BotonCatMaceta.style.backgroundColor = '#f19d57'; 
+    BotonCatMaceta.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+})
+BotonCatMaceta.addEventListener('mouseleave', () => { 
+    BotonCatMaceta.style.background = 'transparent'; 
+    BotonCatMaceta.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
+})
 
 let BotonCatLuces = document.createElement('button'); 
 let textoBotonCatLuces = document.createTextNode('Luces');
 BotonCatLuces.append(textoBotonCatLuces);
-BotonCatLuces.setAttribute('onclick', 'mostrarCatLuces()')
+BotonCatLuces.setAttribute('onclick', 'mostrarCatLuces()');
+BotonCatLuces.style.background = 'transparent';
+BotonCatLuces.style.padding = '10px';
+BotonCatLuces.style.border = '2px solid #f19d57';
+BotonCatLuces.style.borderRadius = '10px';
+BotonCatLuces.addEventListener('mouseover', () => { 
+    BotonCatLuces.style.backgroundColor = '#f19d57'; 
+    BotonCatLuces.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+})
+BotonCatLuces.addEventListener('mouseleave', () => { 
+    BotonCatLuces.style.background = 'transparent'; 
+    BotonCatLuces.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)';
+})
+
 
 CrearDivCategorias.append(BotonCats, BotonCatKit, BotonCatMaceta, BotonCatLuces);
 main.style.flexDirection = 'column';
@@ -334,8 +387,6 @@ function CatLuces(valor){
 console.log(luces);
 
 
-
-
     function mostrarCatKit(){
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
@@ -354,7 +405,6 @@ console.log(luces);
             contenedorProductos.appendChild(productoHTML);
             })
     }
-
 
     function mostrarCatMacetas(){
         let contenedorProductos = document.getElementById('productos'); 
