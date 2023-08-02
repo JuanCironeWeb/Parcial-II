@@ -1,6 +1,6 @@
 'use strict'
 
-const productos = [ 
+let productos = [ 
 {
     titulo:"Combo Full Kit Indoor Led Carpa 80x80 + Led 300w Completo",
     img:"productos/item1.jpg",
@@ -50,8 +50,10 @@ const productos = [
 let chango = [];
 let totalCompra = 0;
 let tamanocarrito= document.getElementById('tamanoCarrito');
-tamanocarrito.innerHTML=Object.keys(chango).length;
+tamanocarrito.innerHTML=chango.length;
 tamanocarrito.style.display='none';
+let totalNav=document.getElementById('totalCompra');
+totalNav.innerHTML=`$${totalCompra}`;
 
 
 
@@ -71,14 +73,16 @@ var PrecioTotal = document.createElement('div') ;
 ventanaModal.appendChild(PrecioTotal);
 PrecioTotal.setAttribute('id','total');
 PrecioTotal.setAttribute('class','PrecioTotal');
-PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+PrecioTotal.textContent =`No hay elementos en el carrito`;
 var Pagar=document.createElement('div');
 ventanaModal.appendChild(Pagar);
 Pagar.setAttribute('id','pagar');
+Pagar.textContent=`Ir a pagar`;
 Pagar.style.display='none';
 
 
 
+// FUNCIÓN MOSTRAR CARRITO
 
 carrito.addEventListener('mouseover', (parametro) => { 
    ventanaModal.style.display = 'flex'; 
@@ -108,14 +112,18 @@ VentanaModalX.addEventListener('click', (parametro) => {
  })
 
 
-
+// MOSTRAR PRODUCTOS
 
 function mostrarProductos() {
     MostrarVentanaCategoria();
-    const contenedorProductos = document.getElementById('productos');
+    let contenedorProductos = document.getElementById('productos');
     contenedorProductos.innerHTML='';
+    BotonCats.style.fontWeight='900';
+    BotonCatKit.style.fontWeight='400';
+    BotonCatMaceta.style.fontWeight='400';
+    BotonCatLuces.style.fontWeight='400';
     productos.forEach((productos, indice) => {
-    const productoHTML=document.createElement('div');
+    let productoHTML=document.createElement('div');
     productoHTML.setAttribute('class','card');
     productoHTML.innerHTML=`<ul>
     <li class='itemTitle'> ${productos.titulo}</li>
@@ -129,28 +137,28 @@ function mostrarProductos() {
 }
 
 function agregarAlCarrito(indice){
-    const productoSeleccionado = productos[indice];
+    let productoSeleccionado = productos[indice];
     chango.push(productoSeleccionado);
     totalCompra += productoSeleccionado.precio;
     actualizarCarrito();
 
 }
 function quitarDelCarrito(indice){
-    const productoQuitado=chango[indice];
+    let productoQuitado=chango[indice];
     totalCompra-=productoQuitado.precio;
     chango.splice(indice,1);
     actualizarCarrito();
 }
 
 function actualizarCarrito(){
-    const carritoElement=document.getElementById('carritoContenedor');
+    let carritoElement=document.getElementById('carritoContenedor');
     carritoElement.innerHTML='';
 
     
     
 
     chango.forEach((producto, indice) => {
-        const itemCarrito=document.createElement('div');
+        let itemCarrito=document.createElement('div');
         itemCarrito.setAttribute('class','card');
         itemCarrito.setAttribute('class','ProductoCarrito');
         itemCarrito.innerHTML= `<ul>
@@ -165,23 +173,113 @@ function actualizarCarrito(){
     });
     PrecioTotal.innerHTML =`Total:$${totalCompra}`;
     tamanocarrito.innerHTML=chango.length;
-
+    totalNav.innerHTML=`$${totalCompra}`;
 
     if(chango.length>0){
         Pagar.style.display='flex';
-        Pagar.innerHTML=`Ir a pagar`;
+        
         PrecioTotal.innerHTML =`Total:$${totalCompra}`;
         tamanocarrito.style.display='flex';
+        DivBotonVaciarCarrito.style.display = 'flex'; 
+        totalNav.style.display='flex';
     }else{
         Pagar.style.display='none';
         PrecioTotal.innerHTML =`No hay elementos en el carrito`;
         tamanocarrito.style.display='none';
+        DivBotonVaciarCarrito.style.display = 'none'; 
+        totalNav.style.display='none';
+    }
     }
 
-    }
+    let CrearDivCategorias = document.createElement('div'); 
+    main.prepend(CrearDivCategorias); 
+    
+    CrearDivCategorias.setAttribute('id', 'DivCategorias');
+    CrearDivCategorias.style.display = 'flex'; 
+    CrearDivCategorias.style.justifyContent= 'space-evenly';
+    CrearDivCategorias.style.width = '26vw'; 
+    CrearDivCategorias.style.padding = '3%'; 
+    
+    let BotonCats = document.createElement('button'); 
+    let textoBotonCats = document.createTextNode('Todos los productos');
+    BotonCats.append(textoBotonCats);
+    BotonCats.setAttribute('onclick', 'mostrarProductos()');
+    BotonCats.style.background = 'transparent';
+    BotonCats.style.fontWeight='900';
+    BotonCats.style.padding = '10px';
+    BotonCats.style.border = '2px solid #f19d57';
+    BotonCats.style.borderRadius = '10px';
+    BotonCats.addEventListener('mouseover', () => { 
+        BotonCats.style.backgroundColor = '#f19d57'; 
+        BotonCats.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+    
+    })
+    BotonCats.addEventListener('mouseleave', () => { 
+        BotonCats.style.background = 'transparent'; 
+        BotonCats.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
+    
+    })
+    
+    let BotonCatKit = document.createElement('button'); 
+    let textoBotonCatKit = document.createTextNode('Kits');
+    BotonCatKit.append(textoBotonCatKit);
+    BotonCatKit.setAttribute('onclick', 'mostrarCatKit()')
+    BotonCatKit.style.background = 'transparent';
+    BotonCatKit.style.padding = '10px';
+    BotonCatKit.style.border = '2px solid #f19d57';
+    BotonCatKit.style.borderRadius = '10px';
+    BotonCatKit.addEventListener('mouseover', () => { 
+        BotonCatKit.style.backgroundColor = '#f19d57'; 
+        BotonCatKit.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+    })
+    BotonCatKit.addEventListener('mouseleave', () => { 
+        BotonCatKit.style.background = 'transparent'; 
+        BotonCatKit.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
+    
+    })
+    
+    let BotonCatMaceta = document.createElement('button'); 
+    let textoBotonCatMaceta = document.createTextNode('Macetas');
+    BotonCatMaceta.append(textoBotonCatMaceta);
+    BotonCatMaceta.setAttribute('onclick', 'mostrarCatMacetas()')
+    BotonCatMaceta.style.background = 'transparent';
+    BotonCatMaceta.style.padding = '10px';
+    BotonCatMaceta.style.border = '2px solid #f19d57';
+    BotonCatMaceta.style.borderRadius = '10px';
+    BotonCatMaceta.addEventListener('mouseover', () => { 
+        BotonCatMaceta.style.backgroundColor = '#f19d57'; 
+        BotonCatMaceta.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+    })
+    BotonCatMaceta.addEventListener('mouseleave', () => { 
+        BotonCatMaceta.style.background = 'transparent'; 
+        BotonCatMaceta.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
+    })
+    
+    let BotonCatLuces = document.createElement('button'); 
+    let textoBotonCatLuces = document.createTextNode('Luces');
+    BotonCatLuces.append(textoBotonCatLuces);
+    BotonCatLuces.setAttribute('onclick', 'mostrarCatLuces()');
+    BotonCatLuces.style.background = 'transparent';
+    BotonCatLuces.style.padding = '10px';
+    BotonCatLuces.style.border = '2px solid #f19d57';
+    BotonCatLuces.style.borderRadius = '10px';
+    BotonCatLuces.addEventListener('mouseover', () => { 
+        BotonCatLuces.style.backgroundColor = '#f19d57'; 
+        BotonCatLuces.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
+    })
+    BotonCatLuces.addEventListener('mouseleave', () => { 
+        BotonCatLuces.style.background = 'transparent'; 
+        BotonCatLuces.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)';
+    })
+    
+
+
+
 
 
 mostrarProductos();
+
+// VACIAR CARRITO
 
 let DivBotonVaciarCarrito = document.createElement('div');
 DivBotonVaciarCarrito.setAttribute('class', 'BotonVaciar')
@@ -190,32 +288,34 @@ let TextoBotonVaciarCarrito = document.createTextNode('Vaciar Carrito');
 DivBotonVaciarCarrito.append(BotonVaciarCarrito); 
 BotonVaciarCarrito.append(TextoBotonVaciarCarrito);
 ventanaModal.append(DivBotonVaciarCarrito);
-DivBotonVaciarCarrito.style.display = 'flex'; 
+
+DivBotonVaciarCarrito.style.display='none';
 DivBotonVaciarCarrito.style.order = '2';
 DivBotonVaciarCarrito.style.justifyContent = 'center'; 
 DivBotonVaciarCarrito.style.alignItems = 'center';
 DivBotonVaciarCarrito.style.alignSelf = 'center';
-BotonVaciarCarrito.style.border = '1px solid black'
+BotonVaciarCarrito.style.border = 'none'
 BotonVaciarCarrito.style.width = '120px';
 BotonVaciarCarrito.style.height = '20px';
 BotonVaciarCarrito.style.fontSize = '12px';
-BotonVaciarCarrito.style.background = 'transparent'; 
+BotonVaciarCarrito.style.background = '#ddddd'; 
 BotonVaciarCarrito.style.borderRadius = '4px';
 BotonVaciarCarrito.style.marginBottom= '10px';
-
+BotonVaciarCarrito.style.fontWeight='600';
 
 
 BotonVaciarCarrito.addEventListener('click', () => { 
-    const carritoElement=document.getElementById('carritoContenedor');
+    let carritoElement=document.getElementById('carritoContenedor');
     carritoElement.innerHTML='';
     chango = [];
     let tamanocarrito= document.getElementById('tamanoCarrito');
         tamanocarrito.innerHTML='0';
         let PrecioTotal = document.getElementById('total');
         PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+        actualizarCarrito();
 })
 
-
+// DESCRIPCIÓN DE PRODUCTOS
 
 let cardProd = document.getElementsByClassName('card');
 console.info(cardProd);
@@ -231,15 +331,15 @@ for(let x of cardProd){
 
 
 function mostrarDescripcionProducto(producto) {
-    const descripcionModal = document.createElement('div');
+    let descripcionModal = document.createElement('div');
     descripcionModal.setAttribute('class', 'DescripcionModal');
     descripcionModal.style.display = 'none';
-    const ventanaModalX = document.createElement('div');
+    let ventanaModalX = document.createElement('div');
     ventanaModalX.setAttribute('class', 'CerrarModalX');
     ventanaModalX.addEventListener('click', () => {
         descripcionModal.style.display = 'none';
     });
-    const descripcionProducto = document.createElement('div');
+    let descripcionProducto = document.createElement('div');
     descripcionProducto.setAttribute('id', 'descripcionProducto');
     descripcionProducto.innerHTML = `
         <img src="${producto.img}" alt="${producto.titulo}">
@@ -255,62 +355,13 @@ function mostrarDescripcionProducto(producto) {
     })
 }
 
-const cardProductos = document.querySelectorAll('.itemTitle');
+let cardProductos = document.querySelectorAll('.itemTitle');
 cardProductos.forEach((card, indice) => {
     card.addEventListener('mouseover', () => {
         mostrarDescripcionProducto(productos[indice]);
     });
 });
 
-
-
-
-
-function mostrarOfertaModal() {
-    const pantallaGris = document.createElement('div');
-    pantallaGris.setAttribute('class', 'PantallaGris');
-    document.body.appendChild(pantallaGris);
-
-    const ofertaModal = document.createElement('div');
-    ofertaModal.setAttribute('class', 'VentanaModal');
-
-    const mensajeOferta = document.createElement('div');
-    mensajeOferta.setAttribute('class', 'MensajeOferta');
-    mensajeOferta.innerHTML = `
-        <h2>Aprovecha la oferta solo por 10 minutos.</h2>
-        <p>Con el código BLOOMBUDDY tienes un descuento del 25%!!!</p>
-        <p>No te la pierdas!</p>
-        <button class="CerrarBoton">Cerrar</button>
-    `;
-
-    ofertaModal.appendChild(mensajeOferta);
-    document.body.appendChild(ofertaModal);
-
-    ofertaModal.style.display = 'flex';
-    ofertaModal.style.flexDirection = 'column';
-    ofertaModal.style.width = '350px';
-    ofertaModal.style.minHeight = '100px';
-    ofertaModal.style.backgroundColor = '#f19d57';
-    ofertaModal.style.position = 'fixed';
-    ofertaModal.style.top = '50%';
-    ofertaModal.style.left = '50%';
-    ofertaModal.style.transform = 'translate(-50%, -50%)';
-    ofertaModal.style.padding = '20px';
-    ofertaModal.style.borderRadius = '15px';
-    ofertaModal.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
-    ofertaModal.style.zIndex = '999';
-
-    const cerrarBoton = mensajeOferta.querySelector('.CerrarBoton');
-    cerrarBoton.addEventListener('click', () => {
-        ofertaModal.style.display = 'none';
-        pantallaGris.style.display = 'none';
-    });
-
-    setTimeout(() => {
-        ofertaModal.style.display = 'none';
-        pantallaGris.style.display = 'none';
-    }, 10000);
-}
 
 window.addEventListener('load', () => {
     mostrarOfertaModal();
@@ -319,85 +370,6 @@ window.addEventListener('load', () => {
 
 /* Filtrar Categorias */
 
-let CrearDivCategorias = document.createElement('div'); 
-main.prepend(CrearDivCategorias); 
-
-CrearDivCategorias.setAttribute('id', 'DivCategorias');
-CrearDivCategorias.style.display = 'flex'; 
-CrearDivCategorias.style.justifyContent= 'space-evenly';
-CrearDivCategorias.style.width = '50vw'; 
-CrearDivCategorias.style.padding = '3%'; 
-
-let BotonCats = document.createElement('button'); 
-let textoBotonCats = document.createTextNode('Todos los productos');
-BotonCats.append(textoBotonCats);
-BotonCats.setAttribute('onclick', 'mostrarProductos()');
-BotonCats.style.background = 'transparent';
-BotonCats.style.padding = '10px';
-BotonCats.style.border = '2px solid #f19d57';
-BotonCats.style.borderRadius = '10px';
-BotonCats.addEventListener('mouseover', () => { 
-    BotonCats.style.backgroundColor = '#f19d57'; 
-    BotonCats.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
-
-})
-BotonCats.addEventListener('mouseleave', () => { 
-    BotonCats.style.background = 'transparent'; 
-    BotonCats.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
-
-})
-
-let BotonCatKit = document.createElement('button'); 
-let textoBotonCatKit = document.createTextNode('Kits');
-BotonCatKit.append(textoBotonCatKit);
-BotonCatKit.setAttribute('onclick', 'mostrarCatKit()')
-BotonCatKit.style.background = 'transparent';
-BotonCatKit.style.padding = '10px';
-BotonCatKit.style.border = '2px solid #f19d57';
-BotonCatKit.style.borderRadius = '10px';
-BotonCatKit.addEventListener('mouseover', () => { 
-    BotonCatKit.style.backgroundColor = '#f19d57'; 
-    BotonCatKit.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
-})
-BotonCatKit.addEventListener('mouseleave', () => { 
-    BotonCatKit.style.background = 'transparent'; 
-    BotonCatKit.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
-
-})
-
-let BotonCatMaceta = document.createElement('button'); 
-let textoBotonCatMaceta = document.createTextNode('Macetas');
-BotonCatMaceta.append(textoBotonCatMaceta);
-BotonCatMaceta.setAttribute('onclick', 'mostrarCatMacetas()')
-BotonCatMaceta.style.background = 'transparent';
-BotonCatMaceta.style.padding = '10px';
-BotonCatMaceta.style.border = '2px solid #f19d57';
-BotonCatMaceta.style.borderRadius = '10px';
-BotonCatMaceta.addEventListener('mouseover', () => { 
-    BotonCatMaceta.style.backgroundColor = '#f19d57'; 
-    BotonCatMaceta.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
-})
-BotonCatMaceta.addEventListener('mouseleave', () => { 
-    BotonCatMaceta.style.background = 'transparent'; 
-    BotonCatMaceta.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)'; 
-})
-
-let BotonCatLuces = document.createElement('button'); 
-let textoBotonCatLuces = document.createTextNode('Luces');
-BotonCatLuces.append(textoBotonCatLuces);
-BotonCatLuces.setAttribute('onclick', 'mostrarCatLuces()');
-BotonCatLuces.style.background = 'transparent';
-BotonCatLuces.style.padding = '10px';
-BotonCatLuces.style.border = '2px solid #f19d57';
-BotonCatLuces.style.borderRadius = '10px';
-BotonCatLuces.addEventListener('mouseover', () => { 
-    BotonCatLuces.style.backgroundColor = '#f19d57'; 
-    BotonCatLuces.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0.45)'; 
-})
-BotonCatLuces.addEventListener('mouseleave', () => { 
-    BotonCatLuces.style.background = 'transparent'; 
-    BotonCatLuces.style.boxShadow = '0px 0px 10px 0px rgba(0,0,0,0)';
-})
 
 
 CrearDivCategorias.append(BotonCats, BotonCatKit, BotonCatMaceta, BotonCatLuces);
@@ -406,28 +378,28 @@ let kit = productos.filter(CatKit);
 function CatKit(valor) { 
 return valor.categoria == 'kit'; 
 }
-console.log(kit);
 let macetas = productos.filter(CatMacetas);
 function CatMacetas(valor){ 
     return valor.categoria == 'macetas';
 }
-console.log(macetas); 
 
 let luces = productos.filter(CatLuces); 
 function CatLuces(valor){ 
     return valor.categoria == 'luces';
 }
-console.log(luces);
-
 
     function mostrarCatKit(){
+        mostrarOfertaModal();
         MostrarVentanaCategoria();
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
-
+        BotonCats.style.fontWeight='400';
+        BotonCatKit.style.fontWeight='900';
+        BotonCatMaceta.style.fontWeight='400';
+        BotonCatLuces.style.fontWeight='400';
         console.log(kit);
         kit.forEach((productos, indice) => {
-            const productoHTML=document.createElement('div');
+            let productoHTML=document.createElement('div');
             productoHTML.setAttribute('class','card');
             productoHTML.innerHTML=`<ul>
             <li class='itemTitle'> ${productos.titulo}</li>
@@ -441,13 +413,17 @@ console.log(luces);
     }
 
     function mostrarCatMacetas(){
+        mostrarOfertaModal();
         MostrarVentanaCategoria();
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
-
+        BotonCats.style.fontWeight='400';
+        BotonCatKit.style.fontWeight='400';
+        BotonCatMaceta.style.fontWeight='900';
+        BotonCatLuces.style.fontWeight='400';
         console.log(macetas);
         macetas.forEach((productos, indice) => {
-            const productoHTML=document.createElement('div');
+            let productoHTML=document.createElement('div');
             productoHTML.setAttribute('class','card');
             productoHTML.innerHTML=`<ul>
             <li class='itemTitle'> ${productos.titulo}</li>
@@ -461,13 +437,18 @@ console.log(luces);
     }
 
     function mostrarCatLuces(){
+        mostrarOfertaModal();
         MostrarVentanaCategoria();
         let contenedorProductos = document.getElementById('productos'); 
         contenedorProductos.innerHTML='';
+        BotonCats.style.fontWeight='400';
+        BotonCatKit.style.fontWeight='400';
+        BotonCatMaceta.style.fontWeight='400';
+        BotonCatLuces.style.fontWeight='900';
 
         console.log(macetas);
         luces.forEach((productos, indice) => {
-            const productoHTML=document.createElement('div');
+            let productoHTML=document.createElement('div');
             productoHTML.setAttribute('class','card');
             productoHTML.innerHTML=`<ul>
             <li class='itemTitle'> ${productos.titulo}</li>
@@ -495,7 +476,7 @@ function MostrarVentanaCategoria(){
         VentanaCategoriaKit.style.zIndex = '999';
 
 
-        const pantallaGris = document.createElement('div');
+        let pantallaGris = document.createElement('div');
     pantallaGris.setAttribute('class', 'PantallaGris');
     document.body.appendChild(pantallaGris);
     
@@ -503,6 +484,134 @@ function MostrarVentanaCategoria(){
         setTimeout(() => {
             VentanaCategoriaKit.style.display = 'none';
             pantallaGris.style.display = 'none';
-        }, 10000);
+        }, 10);
 
 }
+
+
+// BANNER OFERTA
+
+function mostrarOfertaModal() {
+    let pantallaGris = document.createElement('div');
+    pantallaGris.classList.add('PantallaGris');
+    document.body.appendChild(pantallaGris);
+
+    let ofertaModal = document.createElement('div');
+    ofertaModal.classList.add('VentanaModal');
+
+    let mensajeOferta = document.createElement('div');
+    mensajeOferta.classList.add('MensajeOferta');
+
+    let imagenOferta = document.createElement('img');
+    imagenOferta.src = 'Recursos/oferta.png';
+    imagenOferta.alt = 'Oferta';
+    imagenOferta.style.width = '300px';
+    imagenOferta.style.height = '300px';
+
+    let h2 = document.createElement('h2');
+    h2.textContent = 'Aprovecha la oferta solo por 10 minutos.';
+    let p1 = document.createElement('p');
+    p1.textContent = 'Con el código BLOOMBUDDY tienes un descuento del 25%!!!';
+    let p2 = document.createElement('p');
+    p2.textContent = 'No te la pierdas!';
+
+    let cerrarBoton = document.createElement('button');
+    cerrarBoton.classList.add('CerrarBoton');
+    cerrarBoton.textContent = 'Cerrar';
+
+    mensajeOferta.appendChild(imagenOferta);
+    mensajeOferta.appendChild(h2);
+    mensajeOferta.appendChild(p1);
+    mensajeOferta.appendChild(p2);
+    mensajeOferta.appendChild(cerrarBoton);
+
+    ofertaModal.appendChild(mensajeOferta);
+    document.body.appendChild(ofertaModal);
+
+    ofertaModal.style.display = 'flex';
+    ofertaModal.style.flexDirection = 'column';
+    ofertaModal.style.width = '350px';
+    ofertaModal.style.minHeight = '100px';
+    ofertaModal.style.backgroundColor = '#f19d57';
+    ofertaModal.style.position = 'fixed';
+    ofertaModal.style.top = '50%';
+    ofertaModal.style.left = '50%';
+    ofertaModal.style.transform = 'translate(-50%, -50%)';
+    ofertaModal.style.padding = '20px';
+    ofertaModal.style.borderRadius = '15px';
+    ofertaModal.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
+    ofertaModal.style.zIndex = '999';
+
+    cerrarBoton.addEventListener('click', () => {
+        ofertaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    });
+
+    setTimeout(() => {
+        ofertaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    }, 10000);
+}
+
+// MODAL PAGAR
+
+
+Pagar.addEventListener('click', () => {
+    let pantallaGris = document.createElement('div');
+    pantallaGris.setAttribute('class', 'PantallaGris');
+    document.body.appendChild(pantallaGris);
+
+    let ventanaModal = document.createElement('div');
+    ventanaModal.setAttribute('class', 'VentanaModal');
+    ventanaModal.setAttribute('id', 'pagarmodal');
+
+    let formularioCliente = document.createElement('form');
+    formularioCliente.innerHTML = `<h2>Datos de facturación</h2>
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="apellido" placeholder="Apellido" required>
+        <input type="tel" id="telefono" placeholder="Teléfono" required>
+        <input type="email" id="mail" placeholder="Email" required>
+        <input type="text" id="direccion" placeholder="Dirección" required>
+        <div>
+        <div type="button" class="SiguienteBoton">Siguiente</div>
+        <div type="button" class="CancelarBoton">Cancelar</div>
+        </div>
+    `;
+
+    ventanaModal.appendChild(formularioCliente);
+    document.body.appendChild(ventanaModal);
+
+    ventanaModal.style.display = 'flex';
+    ventanaModal.style.flexDirection = 'column';
+    ventanaModal.style.width = '350px';
+    ventanaModal.style.backgroundColor = '#f19d57';
+    ventanaModal.style.position = 'fixed';
+    ventanaModal.style.top = '50%';
+    ventanaModal.style.left = '50%';
+    ventanaModal.style.transform = 'translate(-50%, -50%)';
+    ventanaModal.style.padding = '20px';
+    ventanaModal.style.borderRadius = '15px';
+    ventanaModal.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
+    ventanaModal.style.zIndex = '999';
+
+    let cancelarBoton = formularioCliente.querySelector('.CancelarBoton');
+    cancelarBoton.addEventListener('click', () => {
+        ventanaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    });
+
+    let siguienteBoton = formularioCliente.querySelector('.SiguienteBoton');
+    siguienteBoton.addEventListener('click', () => {
+       
+
+        ????????
+
+        ventanaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    });
+
+    pantallaGris.addEventListener('click', () => {
+        ventanaModal.style.display = 'none';
+        pantallaGris.style.display = 'none';
+    });
+});
