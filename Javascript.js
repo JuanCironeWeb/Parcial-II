@@ -578,6 +578,16 @@ Pagar.addEventListener('click', () => {
         </div>
     `;
 
+    formularioCliente.addEventListener('input', (event) => {
+        const input = event.target;
+        if (input.checkValidity()) {
+            input.classList.add('input-valido');
+        } else {
+            input.classList.remove('input-valido');
+        }
+    });
+
+
     ventanaModal.appendChild(formularioCliente);
     document.body.appendChild(ventanaModal);
 
@@ -602,16 +612,15 @@ Pagar.addEventListener('click', () => {
 
     let siguienteBoton = formularioCliente.querySelector('.SiguienteBoton');
     siguienteBoton.addEventListener('click', () => {
-       
-
-        ????????
 
         ventanaModal.style.display = 'none';
         pantallaGris.style.display = 'none';
     });
 
-    pantallaGris.addEventListener('click', () => {
-        ventanaModal.style.display = 'none';
-        pantallaGris.style.display = 'none';
-    });
+
+})
+
+pantallaGris.addEventListener('click', () => {
+    ventanaModal.style.display = 'none';
+    pantallaGris.style.display = 'none';
 });

@@ -417,3 +417,8 @@ footer ul li a{
 
 }
 
+
+input.input-valido {
+    border: 2px solid #00b106;
+    background-color: #98f898; 
+}
