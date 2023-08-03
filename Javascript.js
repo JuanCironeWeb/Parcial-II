@@ -136,6 +136,8 @@ function mostrarProductos() {
     })
 }
 
+// AGREGAR/QUITAR/ACTUALIZAR AL CARRITO
+
 function agregarAlCarrito(indice){
     let productoSeleccionado = productos[indice];
     chango.push(productoSeleccionado);
@@ -315,57 +317,6 @@ BotonVaciarCarrito.addEventListener('click', () => {
         actualizarCarrito();
 })
 
-// DESCRIPCIÓN DE PRODUCTOS
-
-let cardProd = document.getElementsByClassName('card');
-console.info(cardProd);
-for(let x of cardProd){
-    x.addEventListener('mouseover', function(){
-        this.style.backgroundColor='#f19d57';
-    });
-    x.addEventListener('mouseout',function(){
-        this.style.backgroundColor='#dddd';
-    })
-}
-
-
-
-function mostrarDescripcionProducto(producto) {
-    let descripcionModal = document.createElement('div');
-    descripcionModal.setAttribute('class', 'DescripcionModal');
-    descripcionModal.style.display = 'none';
-    let ventanaModalX = document.createElement('div');
-    ventanaModalX.setAttribute('class', 'CerrarModalX');
-    ventanaModalX.addEventListener('click', () => {
-        descripcionModal.style.display = 'none';
-    });
-    let descripcionProducto = document.createElement('div');
-    descripcionProducto.setAttribute('id', 'descripcionProducto');
-    descripcionProducto.innerHTML = `
-        <img src="${producto.img}" alt="${producto.titulo}">
-        <div class='itemTitle'>${producto.titulo}</div>
-        <div class='itemDesc'>${producto.descripcion}</div>
-        <div class='itemPrice'>$${producto.precio}</div> `;
-    descripcionModal.appendChild(ventanaModalX);
-    descripcionModal.appendChild(descripcionProducto);
-    document.body.appendChild(descripcionModal);
-    descripcionModal.style.display = 'flex';
-    descripcionProducto.addEventListener('mouseleave',()=>{
-        descripcionModal.style.display='none';
-    })
-}
-
-let cardProductos = document.querySelectorAll('.itemTitle');
-cardProductos.forEach((card, indice) => {
-    card.addEventListener('mouseover', () => {
-        mostrarDescripcionProducto(productos[indice]);
-    });
-});
-
-
-window.addEventListener('load', () => {
-    mostrarOfertaModal();
-});
 
 
 /* Filtrar Categorias */
@@ -461,7 +412,58 @@ function CatLuces(valor){
             })
     }
 
-    
+    // hover sobre cards
+
+let cardProd = document.getElementsByClassName('card');
+console.info(cardProd);
+for(let x of cardProd){
+    x.addEventListener('mouseover', function(){
+        this.style.backgroundColor='#f19d57';
+    });
+    x.addEventListener('mouseout',function(){
+        this.style.backgroundColor='#dddd';
+    })
+}
+
+    // DESCRIPCIÓN DE PRODUCTOS
+
+function mostrarDescripcionProducto(producto) {
+    let descripcionModal = document.createElement('div');
+    descripcionModal.setAttribute('class', 'DescripcionModal');
+    descripcionModal.style.display = 'none';
+    let ventanaModalX = document.createElement('div');
+    ventanaModalX.setAttribute('class', 'CerrarModalX');
+    ventanaModalX.addEventListener('click', () => {
+        descripcionModal.style.display = 'none';
+    });
+    let descripcionProducto = document.createElement('div');
+    descripcionProducto.setAttribute('id', 'descripcionProducto');
+    descripcionProducto.innerHTML = `
+        <img src="${producto.img}" alt="${producto.titulo}">
+        <div class='itemTitle'>${producto.titulo}</div>
+        <div class='itemDesc'>${producto.descripcion}</div>
+        <div class='itemPrice'>$${producto.precio}</div> `;
+    descripcionModal.appendChild(ventanaModalX);
+    descripcionModal.appendChild(descripcionProducto);
+    document.body.appendChild(descripcionModal);
+    descripcionModal.style.display = 'flex';
+    descripcionProducto.addEventListener('mouseleave',()=>{
+        descripcionModal.style.display='none';
+    })
+}
+
+let cardProductos = document.querySelectorAll('.itemTitle');
+cardProductos.forEach((card, indice) => {
+    card.addEventListener('mouseover', () => {
+        mostrarDescripcionProducto(productos[indice]);
+    });
+});
+
+
+window.addEventListener('load', () => {
+    mostrarOfertaModal();
+});
+
 /* OFERTA CATEGORIAS */
 
 function MostrarVentanaCategoria(){ 
@@ -546,6 +548,12 @@ function mostrarOfertaModal() {
         ofertaModal.style.display = 'none';
         pantallaGris.style.display = 'none';
     });
+    pantallaGris.addEventListener('click', () => {
+        ventanaModal.style.display = 'none';
+        ofertaModal.style.display='none';
+        pantallaGris.style.display = 'none';
+        });
+
 
     setTimeout(() => {
         ofertaModal.style.display = 'none';
@@ -569,7 +577,7 @@ Pagar.addEventListener('click', () => {
     formularioCliente.innerHTML = `<h2>Datos de facturación</h2>
         <input type="text" id="nombre" placeholder="Nombre" required>
         <input type="text" id="apellido" placeholder="Apellido" required>
-        <input type="tel" id="telefono" placeholder="Teléfono" required>
+        <input type="number" id="telefono" placeholder="Teléfono" required>
         <input type="email" id="mail" placeholder="Email" required>
         <input type="text" id="direccion" placeholder="Dirección" required>
         <div>
@@ -581,9 +589,10 @@ Pagar.addEventListener('click', () => {
     formularioCliente.addEventListener('input', (event) => {
         const input = event.target;
         if (input.checkValidity()) {
-            input.classList.add('input-valido');
+            input.classList.add('valido');
         } else {
-            input.classList.remove('input-valido');
+            input.classList.remove('valido');
+            input.classList.add('invalido');
         }
     });
 
@@ -616,11 +625,11 @@ Pagar.addEventListener('click', () => {
         ventanaModal.style.display = 'none';
         pantallaGris.style.display = 'none';
     });
+    
+    pantallaGris.addEventListener('click', () => {
+    ventanaModal.style.display = 'none';
+    pantallaGris.style.display = 'none';
+    });
 
 
 })
-
-pantallaGris.addEventListener('click', () => {
-    ventanaModal.style.display = 'none';
-    pantallaGris.style.display = 'none';
-});
