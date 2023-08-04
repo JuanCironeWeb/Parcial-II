@@ -616,27 +616,32 @@ Pagar.addEventListener('click', () => {
         InputNombre.setAttribute('type', 'text'); 
         InputNombre.setAttribute('id', 'nombre');
         InputNombre.setAttribute('placeholder', 'nombre');
+        InputNombre.setAttribute('required', 'required'); 
 
     let InputApellido = document.createElement('input'); 
         InputApellido.setAttribute('type', 'text'); 
         InputApellido.setAttribute('id', 'apellido');
         InputApellido.setAttribute('placeholder', 'Apellido');
+        InputApellido.setAttribute('required', 'required'); 
 
     let InputNumero = document.createElement('input'); 
         InputNumero.setAttribute('type', 'number'); 
         InputNumero.setAttribute('id', 'telefono');
         InputNumero.setAttribute('placeholder', 'Telefono');
+        InputNumero.setAttribute('required', 'required'); 
 
     let InputMail = document.createElement('input'); 
         InputMail.setAttribute('type', 'email'); 
         InputMail.setAttribute('id', 'mail');
         InputMail.setAttribute('placeholder', 'Email');
         formularioCliente.append(h2FormularioCliente, InputNombre);
+        InputMail.setAttribute('required', 'required'); 
     
     let InputDireccion = document.createElement('input'); 
         InputDireccion.setAttribute('type', 'text'); 
         InputDireccion.setAttribute('id', 'direccion');
         InputDireccion.setAttribute('placeholder', 'Direccion Fiscal');
+        InputDireccion.setAttribute('required', 'required'); 
 // DATOS ENVIO
     let TituloEnvio = document.createElement('h2'); 
     let TextoTituloEnvio = document.createTextNode('Datos del envio');
@@ -645,39 +650,45 @@ Pagar.addEventListener('click', () => {
         InputPersonaQueRecibe.setAttribute('type', 'text'); 
         InputPersonaQueRecibe.setAttribute('id', 'PersonaRecibe');
         InputPersonaQueRecibe.setAttribute('placeholder', 'Nombre y apellido');
+        InputPersonaQueRecibe.setAttribute('required', 'required'); 
 
     let InputNumeroContacto = document.createElement('input');
         InputNumeroContacto.setAttribute('type', 'number'); 
         InputNumeroContacto.setAttribute('id', 'NumeroContacto');
         InputNumeroContacto.setAttribute('placeholder', 'Numero de contacto');
+        InputNumeroContacto.setAttribute('required', 'required'); 
 
     let InputDni = document.createElement('input');
         InputDni.setAttribute('type', 'number'); 
         InputDni.setAttribute('id', 'Dni');
         InputDni.setAttribute('placeholder', 'D.N.I');
+        InputDni.setAttribute('required','required');
 
     let InputDireccionEnvio = document.createElement('input');
         InputDireccionEnvio.setAttribute('type', 'text'); 
         InputDireccionEnvio.setAttribute('id', 'DireccionEnvio');
         InputDireccionEnvio.setAttribute('placeholder', 'Direccion de entrega');
+        InputDireccionEnvio.setAttribute('required','required');
         
     let InputLocalidad = document.createElement('input');
         InputLocalidad.setAttribute('type', 'text'); 
         InputLocalidad.setAttribute('id', 'Localidad');
-        InputLocalidad.setAttribute('placeholder', 'Localidad/Barrio');
+        InputLocalidad.setAttribute('placeholder', 'Localidad');
+        InputLocalidad.setAttribute('required','required');
 
     let InputProvincia = document.createElement('input');
         InputProvincia.setAttribute('type', 'text'); 
         InputProvincia.setAttribute('id', 'Provincia');
         InputProvincia.setAttribute('placeholder', 'Provincia');
-        InputProvincia.style.width = '45%'
+        InputProvincia.style.width = '45%';
+        InputProvincia.setAttribute('required','required');
 
     let InputCodigoPostal = document.createElement('input');
         InputCodigoPostal.setAttribute('type', 'text'); 
         InputCodigoPostal.setAttribute('id', 'CodigoPostal');
         InputCodigoPostal.setAttribute('placeholder', 'Codigo Postal');
         InputCodigoPostal.style.width = '45%';
-        InputCodigoPostal.style.marginRight = '2%'
+        InputCodigoPostal.setAttribute('required','required');
 
 //PAGO
 

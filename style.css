@@ -430,3 +430,7 @@ footer ul li a{
 input{ 
     width: 100%;
 }
+
+#CodigoPostal{
+    margin-left: 8%;
+}
