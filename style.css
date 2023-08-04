@@ -419,12 +419,12 @@ footer ul li a{
 
 
 .valido{
-    border: 2px solid #00b106;
-    background-color: #98f898; 
+    border: 2px solid green;
+    background-color: #d4fbd4; 
 }
 .invalido{
-    border: 2px solid #7a0303;
-    background-color: #f89898; 
+    border: 2px solid red;
+    background-color: #ffcccc; 
 }
 
 input{ 
@@ -433,4 +433,16 @@ input{
 
 #CodigoPostal{
     margin-left: 8%;
+}
+
+#Enviar , #Cancelar{
+    background-color: black;
+    color: #dddd;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+}
+
+.modalmensaje{
+
 }

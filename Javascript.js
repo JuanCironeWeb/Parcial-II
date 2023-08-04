@@ -307,12 +307,12 @@ BotonVaciarCarrito.style.fontWeight='600';
 
 BotonVaciarCarrito.addEventListener('click', () => { 
     let carritoElement=document.getElementById('carritoContenedor');
-    carritoElement.innerHTML='';
+    carritoElement.textContent='';
     chango = [];
     let tamanocarrito= document.getElementById('tamanoCarrito');
-        tamanocarrito.innerHTML='0';
+        tamanocarrito.textContent='0';
         let PrecioTotal = document.getElementById('total');
-        PrecioTotal.innerHTML =`No hay elementos en el carrito`;
+        PrecioTotal.textContent =`No hay elementos en el carrito`;
         actualizarCarrito();
 })
 
@@ -436,7 +436,7 @@ cardProductos.forEach((card, indice) => {
 
 function mostrarHoverCard(){ 
     let cardProd = document.getElementsByClassName('card');
-console.info(cardProd);
+
 
     for(let x of cardProd){
         x.addEventListener('mouseover', function(){
@@ -474,6 +474,8 @@ function mostrarDescripcionProducto(productos) {
     descripcionProducto.addEventListener('mouseleave',()=>{
         descripcionModal.style.display='none';
     })
+
+    
 }
 
 
@@ -511,9 +513,13 @@ window.addEventListener('load', () => {
             VentanaCategoriaKit.style.display = 'none';
             pantallaGris.style.display = 'none';
         }, 10);
-
+    
+        pantallaGris.addEventListener('click', () => {
+            ventanaModal.style.display = 'none';
+            pantallaGris.style.display = 'none';
+        });
+        
 }
-
 
 // BANNER OFERTA
 
@@ -535,9 +541,9 @@ function mostrarOfertaModal() {
     imagenOferta.style.height = '300px';
 
     let h2 = document.createElement('h2');
-    h2.textContent = 'Aprovecha la oferta solo por 10 minutos.';
+    h2.textContent = 'Aprovechá la oferta solo por hoy!';
     let p1 = document.createElement('p');
-    p1.textContent = 'Con el código BLOOMBUDDY tienes un descuento del 25%!!!';
+    p1.textContent = 'Comprando hoy tenes bonificado el envío a todo el país.';
     let p2 = document.createElement('p');
     p2.textContent = 'No te la pierdas!';
 
@@ -583,6 +589,8 @@ function mostrarOfertaModal() {
         ofertaModal.style.display = 'none';
         pantallaGris.style.display = 'none';
     }, 10000);
+
+
 }
 
 // MODAL PAGAR
@@ -614,8 +622,8 @@ Pagar.addEventListener('click', () => {
 
     let InputNombre = document.createElement('input') ; 
         InputNombre.setAttribute('type', 'text'); 
-        InputNombre.setAttribute('id', 'nombre');
-        InputNombre.setAttribute('placeholder', 'nombre');
+        InputNombre.setAttribute('id', 'ombre');
+        InputNombre.setAttribute('placeholder', 'Nombre');
         InputNombre.setAttribute('required', 'required'); 
 
     let InputApellido = document.createElement('input'); 
@@ -627,7 +635,7 @@ Pagar.addEventListener('click', () => {
     let InputNumero = document.createElement('input'); 
         InputNumero.setAttribute('type', 'number'); 
         InputNumero.setAttribute('id', 'telefono');
-        InputNumero.setAttribute('placeholder', 'Telefono');
+        InputNumero.setAttribute('placeholder', 'Teléfono');
         InputNumero.setAttribute('required', 'required'); 
 
     let InputMail = document.createElement('input'); 
@@ -640,7 +648,7 @@ Pagar.addEventListener('click', () => {
     let InputDireccion = document.createElement('input'); 
         InputDireccion.setAttribute('type', 'text'); 
         InputDireccion.setAttribute('id', 'direccion');
-        InputDireccion.setAttribute('placeholder', 'Direccion Fiscal');
+        InputDireccion.setAttribute('placeholder', 'Domicilio');
         InputDireccion.setAttribute('required', 'required'); 
 // DATOS ENVIO
     let TituloEnvio = document.createElement('h2'); 
@@ -655,7 +663,7 @@ Pagar.addEventListener('click', () => {
     let InputNumeroContacto = document.createElement('input');
         InputNumeroContacto.setAttribute('type', 'number'); 
         InputNumeroContacto.setAttribute('id', 'NumeroContacto');
-        InputNumeroContacto.setAttribute('placeholder', 'Numero de contacto');
+        InputNumeroContacto.setAttribute('placeholder', 'Número de contacto');
         InputNumeroContacto.setAttribute('required', 'required'); 
 
     let InputDni = document.createElement('input');
@@ -667,7 +675,7 @@ Pagar.addEventListener('click', () => {
     let InputDireccionEnvio = document.createElement('input');
         InputDireccionEnvio.setAttribute('type', 'text'); 
         InputDireccionEnvio.setAttribute('id', 'DireccionEnvio');
-        InputDireccionEnvio.setAttribute('placeholder', 'Direccion de entrega');
+        InputDireccionEnvio.setAttribute('placeholder', 'Dirección de entrega');
         InputDireccionEnvio.setAttribute('required','required');
         
     let InputLocalidad = document.createElement('input');
@@ -720,13 +728,30 @@ Pagar.addEventListener('click', () => {
 
 // BOTONES
 
-    let BotonAceptar = document.createElement('input'); 
+    let BotonAceptar = document.createElement('button'); 
         BotonAceptar.setAttribute('type', 'submit'); 
         BotonAceptar.setAttribute('id', 'Enviar');
+        BotonAceptar.textContent=('Enviar');
         BotonAceptar.style.marginTop = '15px';
         BotonAceptar.style.backgroundColor = 'black';
         BotonAceptar.style.color = '#f19d57';
         BotonAceptar.style.width = '45%';
+
+        let BotonCancelar = document.createElement('button'); 
+        BotonCancelar.setAttribute('type', 'cancel'); 
+        BotonCancelar.setAttribute('id', 'Cancelar');
+        BotonCancelar.style.marginTop = '15px';
+        BotonCancelar.textContent =`Cancelar`;
+        BotonCancelar.style.backgroundColor = 'black';
+        BotonCancelar.style.color = '#f19d57';
+        BotonCancelar.style.width = '45%';
+        BotonCancelar.style.marginLeft='8%';
+
+   
+        BotonCancelar.addEventListener('click', () => {
+            ventanaModal.style.display = 'none';
+            pantallaGris.style.display = 'none';
+        });
 
 
         BotonAceptar.addEventListener('click', ()=>{ 
@@ -736,19 +761,21 @@ Pagar.addEventListener('click', () => {
         })
 
 
-
-        formularioCliente.append(h2FormularioCliente, InputNombre, InputApellido, InputNumero, InputMail, InputDireccion, TituloEnvio, InputPersonaQueRecibe, InputNumeroContacto, InputDni, InputDireccionEnvio, InputLocalidad, InputProvincia,InputCodigoPostal, DatosDePago, MetodoDePago, BotonAceptar);
+        formularioCliente.append(h2FormularioCliente, InputNombre, InputApellido, InputNumero, InputMail, InputDireccion, TituloEnvio, InputPersonaQueRecibe, InputNumeroContacto, InputDni, InputDireccionEnvio, InputLocalidad, InputProvincia,InputCodigoPostal, DatosDePago, MetodoDePago, BotonAceptar, BotonCancelar);
 
 
     formularioCliente.addEventListener('input', (event) => {
-        const input = event.target;
+        let input = event.target;
         if (input.checkValidity()) {
+            input.classList.remove('invalido');
             input.classList.add('valido');
         } else {
             input.classList.remove('valido');
             input.classList.add('invalido');
         }
     });
+
+
     document.addEventListener("keydown", (event) => {
         if(event.keyCode === 27){
             ventanaModal.style.display = 'none';
@@ -773,38 +800,15 @@ Pagar.addEventListener('click', () => {
     ventanaModal.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
     ventanaModal.style.zIndex = '999';
 
-    let cancelarBoton = formularioCliente.querySelector('.CancelarBoton');
-    cancelarBoton.addEventListener('click', () => {
-        ventanaModal.style.display = 'none';
-        pantallaGris.style.display = 'none';
-    });
 
     pantallaGris.addEventListener('click', () => {
-        ventanaModal.style.display = 'none';
-        pantallaGris.style.display = 'none';
-    });
-
-    let botonSiguiente = formularioCliente.querySelector('.SiguienteBoton');
-        botonSiguiente.addEventListener('click', () => { 
             ventanaModal.style.display = 'none';
-            let CrearVentanaEnvios = document.createElement('div') ; 
-            CrearVentanaEnvios.setAttribute('id', 'VentanaEnvio')
-            CrearVentanaEnvios.style.display = 'flex';
-            CrearVentanaEnvios.style.flexDirection = 'column';
-            CrearVentanaEnvios.style.width = '350px';
-            CrearVentanaEnvios.style.backgroundColor = '#f19d57';
-            CrearVentanaEnvios.style.position = 'fixed';
-            CrearVentanaEnvios.style.top = '50%';
-            CrearVentanaEnvios.style.left = '50%';
-            CrearVentanaEnvios.style.transform = 'translate(-50%, -50%)';
-            CrearVentanaEnvios.style.padding = '20px';
-            CrearVentanaEnvios.style.borderRadius = '15px';
-            CrearVentanaEnvios.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
-            CrearVentanaEnvios.style.zIndex = '999';
-            main.append(CrearVentanaEnvios);
-        })    
+            pantallaGris.style.display = 'none';
+        });
+    
     
 })
+
 
 
 
