@@ -307,12 +307,7 @@ BotonVaciarCarrito.style.fontWeight='600';
 
 BotonVaciarCarrito.addEventListener('click', () => { 
     let carritoElement=document.getElementById('carritoContenedor');
-    carritoElement.textContent='';
     chango = [];
-    let tamanocarrito= document.getElementById('tamanoCarrito');
-        tamanocarrito.textContent='0';
-        let PrecioTotal = document.getElementById('total');
-        PrecioTotal.textContent =`No hay elementos en el carrito`;
         actualizarCarrito();
 })
 
@@ -758,6 +753,10 @@ Pagar.addEventListener('click', () => {
             let mail = document.getElementById('mail').value; 
             console.log(mail);
             alert(`Gracias por comprar en Bloom Budy. Proximamente te llegaran a ${mail} las instrucciones para realizar el pago `);
+
+            chango = [];
+            actualizarCarrito();
+
         })
 
 
