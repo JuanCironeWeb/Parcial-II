@@ -490,13 +490,13 @@ window.addEventListener('load', () => {
 
 /* OFERTA CATEGORIAS */
 
-function MostrarVentanaCategoria(){ 
+ function MostrarVentanaCategoria(){ 
     let VentanaCategoriaKit = document.createElement('div')
         main.append(VentanaCategoriaKit);
         VentanaCategoriaKit.style.display = 'flex';
         VentanaCategoriaKit.style.width = '50vw';
         VentanaCategoriaKit.style.height = '30vh';
-        VentanaCategoriaKit.style.backgroundColor= 'red';
+        VentanaCategoriaKit.style.background= 'transparent';
         VentanaCategoriaKit.style.position = 'fixed';
         VentanaCategoriaKit.style.top = '30vh';    
         VentanaCategoriaKit.style.zIndex = '999';
@@ -504,7 +504,7 @@ function MostrarVentanaCategoria(){
 
         let pantallaGris = document.createElement('div');
     pantallaGris.setAttribute('class', 'PantallaGris');
-    document.body.appendChild(pantallaGris);
+    main.appendChild(pantallaGris);
     
     
         setTimeout(() => {
@@ -520,7 +520,7 @@ function MostrarVentanaCategoria(){
 function mostrarOfertaModal() {
     let pantallaGris = document.createElement('div');
     pantallaGris.classList.add('PantallaGris');
-    document.body.appendChild(pantallaGris);
+    main.appendChild(pantallaGris);
 
     let ofertaModal = document.createElement('div');
     ofertaModal.classList.add('VentanaModal');
@@ -552,7 +552,7 @@ function mostrarOfertaModal() {
     mensajeOferta.appendChild(cerrarBoton);
 
     ofertaModal.appendChild(mensajeOferta);
-    document.body.appendChild(ofertaModal);
+    main.appendChild(ofertaModal);
 
     ofertaModal.style.display = 'flex';
     ofertaModal.style.flexDirection = 'column';
@@ -591,24 +591,143 @@ function mostrarOfertaModal() {
 Pagar.addEventListener('click', () => {
     let pantallaGris = document.createElement('div');
     pantallaGris.setAttribute('class', 'PantallaGris');
-    document.body.appendChild(pantallaGris);
+    main.appendChild(pantallaGris);
 
     let ventanaModal = document.createElement('div');
     ventanaModal.setAttribute('class', 'VentanaModal');
     ventanaModal.setAttribute('id', 'pagarmodal');
 
     let formularioCliente = document.createElement('form');
-    formularioCliente.innerHTML = `<h2>Datos de facturación</h2>
-        <input type="text" id="nombre" placeholder="Nombre" required>
-        <input type="text" id="apellido" placeholder="Apellido" required>
-        <input type="number" id="telefono" placeholder="Teléfono" required>
-        <input type="email" id="mail" placeholder="Email" required>
-        <input type="text" id="direccion" placeholder="Dirección" required>
-        <div>
-        <div type="button" class="SiguienteBoton">Siguiente</div>
-        <div type="button" class="CancelarBoton">Cancelar</div>
-        </div>
-    `;
+        formularioCliente.style.display = 'flex'; 
+        formularioCliente.style.flexDirection = 'row'; 
+        formularioCliente.style.flexWrap = 'wrap';
+        formularioCliente.style.alignItems = 'evenly';
+        formularioCliente.style.justifyContent = 'center';
+        formularioCliente.style.height = '90vh';
+        formularioCliente.style.width = '100%';
+
+
+//DATOS FACTURA
+    let h2FormularioCliente = document.createElement('h2'); 
+    let TextoH2FormularioCliente = document.createTextNode('Datos de facturación');
+        h2FormularioCliente.append(TextoH2FormularioCliente); 
+
+    let InputNombre = document.createElement('input') ; 
+        InputNombre.setAttribute('type', 'text'); 
+        InputNombre.setAttribute('id', 'nombre');
+        InputNombre.setAttribute('placeholder', 'nombre');
+
+    let InputApellido = document.createElement('input'); 
+        InputApellido.setAttribute('type', 'text'); 
+        InputApellido.setAttribute('id', 'apellido');
+        InputApellido.setAttribute('placeholder', 'Apellido');
+
+    let InputNumero = document.createElement('input'); 
+        InputNumero.setAttribute('type', 'number'); 
+        InputNumero.setAttribute('id', 'telefono');
+        InputNumero.setAttribute('placeholder', 'Telefono');
+
+    let InputMail = document.createElement('input'); 
+        InputMail.setAttribute('type', 'email'); 
+        InputMail.setAttribute('id', 'mail');
+        InputMail.setAttribute('placeholder', 'Email');
+        formularioCliente.append(h2FormularioCliente, InputNombre);
+    
+    let InputDireccion = document.createElement('input'); 
+        InputDireccion.setAttribute('type', 'text'); 
+        InputDireccion.setAttribute('id', 'direccion');
+        InputDireccion.setAttribute('placeholder', 'Direccion Fiscal');
+// DATOS ENVIO
+    let TituloEnvio = document.createElement('h2'); 
+    let TextoTituloEnvio = document.createTextNode('Datos del envio');
+        TituloEnvio.append(TextoTituloEnvio);
+    let InputPersonaQueRecibe = document.createElement('input');
+        InputPersonaQueRecibe.setAttribute('type', 'text'); 
+        InputPersonaQueRecibe.setAttribute('id', 'PersonaRecibe');
+        InputPersonaQueRecibe.setAttribute('placeholder', 'Nombre y apellido');
+
+    let InputNumeroContacto = document.createElement('input');
+        InputNumeroContacto.setAttribute('type', 'number'); 
+        InputNumeroContacto.setAttribute('id', 'NumeroContacto');
+        InputNumeroContacto.setAttribute('placeholder', 'Numero de contacto');
+
+    let InputDni = document.createElement('input');
+        InputDni.setAttribute('type', 'number'); 
+        InputDni.setAttribute('id', 'Dni');
+        InputDni.setAttribute('placeholder', 'D.N.I');
+
+    let InputDireccionEnvio = document.createElement('input');
+        InputDireccionEnvio.setAttribute('type', 'text'); 
+        InputDireccionEnvio.setAttribute('id', 'DireccionEnvio');
+        InputDireccionEnvio.setAttribute('placeholder', 'Direccion de entrega');
+        
+    let InputLocalidad = document.createElement('input');
+        InputLocalidad.setAttribute('type', 'text'); 
+        InputLocalidad.setAttribute('id', 'Localidad');
+        InputLocalidad.setAttribute('placeholder', 'Localidad/Barrio');
+
+    let InputProvincia = document.createElement('input');
+        InputProvincia.setAttribute('type', 'text'); 
+        InputProvincia.setAttribute('id', 'Provincia');
+        InputProvincia.setAttribute('placeholder', 'Provincia');
+        InputProvincia.style.width = '45%'
+
+    let InputCodigoPostal = document.createElement('input');
+        InputCodigoPostal.setAttribute('type', 'text'); 
+        InputCodigoPostal.setAttribute('id', 'CodigoPostal');
+        InputCodigoPostal.setAttribute('placeholder', 'Codigo Postal');
+        InputCodigoPostal.style.width = '45%';
+        InputCodigoPostal.style.marginRight = '2%'
+
+//PAGO
+
+    let DatosDePago = document.createElement('h2'); 
+    let TextoDatosDePago = document.createTextNode('Datos de pago') ;
+    DatosDePago.append(TextoDatosDePago);
+    let MetodoDePago = document.createElement('Select');
+            MetodoDePago.setAttribute('id', 'MetodoPago');
+
+    let Opcion1 = document.createElement('option');
+    let TextoOpcion1 = document.createTextNode('MercadoPago');
+        Opcion1.append(TextoOpcion1);
+        Opcion1.setAttribute('id', 'opcion1');
+        Opcion1.setAttribute('value', 'opcion1');
+
+    let Opcion2 = document.createElement('option');
+    let TextoOpcion2 = document.createTextNode('Deposito/transferencia');
+        Opcion2.append(TextoOpcion2);
+        Opcion2.setAttribute('id', 'opcion2');
+        Opcion2.setAttribute('value', 'opcion2');
+
+    let Opcion3 = document.createElement('option');
+    let TextoOpcion3 = document.createTextNode('Tarjeta de credito/Debito');
+        Opcion3.append(TextoOpcion3);
+        Opcion3.setAttribute('id', 'opcion3');
+        Opcion3.setAttribute('value', 'opcion3');
+
+        MetodoDePago.prepend(Opcion1, Opcion2, Opcion3);
+
+// BOTONES
+
+    let BotonAceptar = document.createElement('input'); 
+        BotonAceptar.setAttribute('type', 'submit'); 
+        BotonAceptar.setAttribute('id', 'Enviar');
+        BotonAceptar.style.marginTop = '15px';
+        BotonAceptar.style.backgroundColor = 'black';
+        BotonAceptar.style.color = '#f19d57';
+        BotonAceptar.style.width = '45%';
+
+
+        BotonAceptar.addEventListener('click', ()=>{ 
+            let mail = document.getElementById('mail').value; 
+            console.log(mail);
+            alert(`Gracias por comprar en Bloom Budy. Proximamente te llegaran a ${mail} las instrucciones para realizar el pago `);
+        })
+
+
+
+        formularioCliente.append(h2FormularioCliente, InputNombre, InputApellido, InputNumero, InputMail, InputDireccion, TituloEnvio, InputPersonaQueRecibe, InputNumeroContacto, InputDni, InputDireccionEnvio, InputLocalidad, InputProvincia,InputCodigoPostal, DatosDePago, MetodoDePago, BotonAceptar);
+
 
     formularioCliente.addEventListener('input', (event) => {
         const input = event.target;
@@ -619,14 +738,20 @@ Pagar.addEventListener('click', () => {
             input.classList.add('invalido');
         }
     });
-
+    document.addEventListener("keydown", (event) => {
+        if(event.keyCode === 27){
+            ventanaModal.style.display = 'none';
+            pantallaGris.style.display = 'none';
+        }
+    });
 
     ventanaModal.appendChild(formularioCliente);
-    document.body.appendChild(ventanaModal);
+    main.appendChild(ventanaModal);
 
     ventanaModal.style.display = 'flex';
     ventanaModal.style.flexDirection = 'column';
     ventanaModal.style.width = '350px';
+    ventanaModal.style.height = '90vh';
     ventanaModal.style.backgroundColor = '#f19d57';
     ventanaModal.style.position = 'fixed';
     ventanaModal.style.top = '50%';
@@ -643,17 +768,35 @@ Pagar.addEventListener('click', () => {
         pantallaGris.style.display = 'none';
     });
 
-    let siguienteBoton = formularioCliente.querySelector('.SiguienteBoton');
-    siguienteBoton.addEventListener('click', () => {
-
+    pantallaGris.addEventListener('click', () => {
         ventanaModal.style.display = 'none';
         pantallaGris.style.display = 'none';
     });
+
+    let botonSiguiente = formularioCliente.querySelector('.SiguienteBoton');
+        botonSiguiente.addEventListener('click', () => { 
+            ventanaModal.style.display = 'none';
+            let CrearVentanaEnvios = document.createElement('div') ; 
+            CrearVentanaEnvios.setAttribute('id', 'VentanaEnvio')
+            CrearVentanaEnvios.style.display = 'flex';
+            CrearVentanaEnvios.style.flexDirection = 'column';
+            CrearVentanaEnvios.style.width = '350px';
+            CrearVentanaEnvios.style.backgroundColor = '#f19d57';
+            CrearVentanaEnvios.style.position = 'fixed';
+            CrearVentanaEnvios.style.top = '50%';
+            CrearVentanaEnvios.style.left = '50%';
+            CrearVentanaEnvios.style.transform = 'translate(-50%, -50%)';
+            CrearVentanaEnvios.style.padding = '20px';
+            CrearVentanaEnvios.style.borderRadius = '15px';
+            CrearVentanaEnvios.style.boxShadow = '0px 5px 50px -5px rgba(0, 0, 0, 0.40)';
+            CrearVentanaEnvios.style.zIndex = '999';
+            main.append(CrearVentanaEnvios);
+        })    
     
-    pantallaGris.addEventListener('click', () => {
-    ventanaModal.style.display = 'none';
-    pantallaGris.style.display = 'none';
-    });
-
-
 })
+
+
+
+
+
+

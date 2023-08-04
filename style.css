@@ -426,3 +426,7 @@ footer ul li a{
     border: 2px solid #7a0303;
     background-color: #f89898; 
 }
+
+input{ 
+    width: 100%;
+}
