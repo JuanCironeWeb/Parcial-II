@@ -747,11 +747,13 @@ Pagar.addEventListener('click', () => {
             ventanaModal.style.display = 'none';
             pantallaGris.style.display = 'none';
         });
-
+        
 
         BotonAceptar.addEventListener('click', ()=>{ 
             let mail = document.getElementById('mail').value; 
             console.log(mail);
+
+            formularioCliente.style.display='none';
             alert(`Gracias por comprar en Bloom Budy. Proximamente te llegaran a ${mail} las instrucciones para realizar el pago `);
 
             chango = [];
@@ -805,7 +807,23 @@ Pagar.addEventListener('click', () => {
             pantallaGris.style.display = 'none';
         });
     
-    
+        BotonCancelar.addEventListener('click', () => {
+            ventanaModal.style.display = 'none';
+            pantallaGris.style.display = 'none';
+        });
+        
+
+        BotonAceptar.addEventListener('click', ()=>{ 
+            let mail = document.getElementById('mail').value; 
+            console.log(mail);
+
+            alert(`Gracias por comprar en Bloom Budy. Proximamente te llegaran a ${mail} las instrucciones para realizar el pago `);
+
+            chango = [];
+            actualizarCarrito();
+
+        })
+
 })
 
 
